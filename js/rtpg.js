@@ -31,7 +31,7 @@ var rtpg = rtpg || {};
 rtpg.APP_ID = '232095489061';
 
 /** Your application's Client ID from the Google APIs Console. */
-rtpg.CLIENT_ID = '232095489061-prmus3iliqsdu9212ccqr9fchb2hjh4v.apps.googleusercontent.com';
+rtpg.CLIENT_ID = '232095489061-trrh8k0t9seiv3e0qfvr726807aqslrr.apps.googleusercontent.com';
 
 rtpg.realtimeDoc = null;
 
