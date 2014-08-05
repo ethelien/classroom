@@ -39,10 +39,14 @@ rtpg.collaborators.updateUi = function() {
   $(rtpg.collaborators.COLLABORATORS_SELECTOR).empty();
   for (var i = 0; i < collaboratorsList.length; i = i + 1) {
     var collaborator = collaboratorsList[i];
-    var imgSrc = collaborator.photoUrl == null ? 'images/anon.jpeg' : collaborator.photoUrl;
-    var img = $('<img>').attr('src', imgSrc).attr('alt', collaborator.displayName).attr('title', collaborator.displayName + (collaborator.isMe ? " (Me)" : ""));
-    img.css('background-color', collaborator.color);
-    $(rtpg.collaborators.COLLABORATORS_SELECTOR).append(img);
+    //var imgSrc = collaborator.photoUrl == null ? 'images/anon.jpeg' : collaborator.photoUrl;
+    //var img = $('<img>').attr('src', imgSrc).attr('alt', collaborator.displayName).attr('title', collaborator.displayName + (collaborator.isMe ? " (Me)" : ""));
+    //img.css('background-color', collaborator.color);
+    //$(rtpg.collaborators.COLLABORATORS_SELECTOR).append(img);
+
+
+    var nombre = collaborator.displayName;
+    $(rtpg.collaborators.COLLABORATORS_SELECTOR).append("<span>"+nombre+"</span><br>");
   }
 };
 

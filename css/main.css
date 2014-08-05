@@ -230,7 +230,7 @@ em {
   margin-right: 0px;
 }
 
-#rp-googlebar {
+#rp-upvbar {
   height: 77px;
 }
 
@@ -356,6 +356,10 @@ pre, pre.prettyprint {
 
 .rp-appbar .rp-appname #logoText.hidden {
   font-size: 0;
+}
+
+h1.rp-appname{
+  text-align: center;
 }
 
 .rp-appbar {
@@ -1260,6 +1264,7 @@ input[type=checkbox], input[type=radio], .fakecheckbox, .fakeradio{
     border-radius:1px;
     cursor:pointer;
     position:relative;
+	top: 3px;
 }
 input[type=checkbox]:active, input[type=radio]:active, .fakecheckbox:active, .fakeradio:active{
     border-color:#C6C6C6;
@@ -2275,9 +2280,11 @@ select > option {
   color: grey;
 }
 
-#collaborators {
-  float: right;
+#collaborators, #invitados {
+  /*float: right;*/
   margin-right: 25px;
+  height: 92px;
+  overflow-y: auto;
 }
 
 #collaborators > img {
@@ -2354,7 +2361,7 @@ select > option {
 	margin-right: 20px;
 }
 
-#rp-googlebar {
+#rp-upvbar {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -2382,10 +2389,20 @@ select > option {
 #rp-logo img {
 	width: 200px;
 	vertical-align: top;
-	top: -5px;
-	left: -4px;
+	left: -52px;
+	top: -20px;
 	position: relative
 }
+
+#adminContainer {
+	z-index: 1001;
+	position: relative;
+	float: left;
+	width: 100%;
+	border-right: 1px solid #ebebeb;
+	margin-right: -1px;
+}
+
 #leftContainer {
 	z-index: 1001;
 	position: relative;
@@ -2401,8 +2418,9 @@ select > option {
 	height: 100%;
 	float: right;
 	border-top: solid 1px #ebebeb;
-	margin-top: -1px;
+	margin-top: 282px;
 	background-color: white;
+
 }
 #fakeappbar {
 	margin-top: -67px;
@@ -2419,4 +2437,60 @@ select > option {
 }
 #filterLocal {
 	margin-right: 10px;
+}
+
+#clase{
+	float: left; 
+	width: 25%;
+	border: 1px solid #ebebeb;
+	margin-left: -6px;
+}
+
+#alumnos{
+	float: left; 
+	width: 50%;
+	border: 1px solid #ebebeb;
+}
+
+#opciones{
+	float: left; 
+	width: 25%;
+	border: 1px solid #ebebeb;
+}
+
+/*SECTION CLASE*/
+
+section#clase .rp-section-content{
+	padding: 10px 0px;
+}
+
+section#clase .notesBox{
+	height: 148px;
+}
+
+/*SECTION ALUMNOS*/
+
+section#alumnos .rp-section-content{
+	padding: 10px 0px;
+}
+
+section#alumnos .notesBox{
+	height: 148px;
+}
+
+#invitados_main, #collaborators_main{
+	float: left;
+	max-width: 250px;
+   	min-width: 200px;
+	margin-right: 20px;
+}
+
+/*SECTION OPCIONEs*/
+
+section#opciones .rp-section-content{
+	padding: 10px 0px;
+}
+
+section#opciones .notesBox{
+	height: 148px;
 }
