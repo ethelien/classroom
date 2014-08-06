@@ -62,7 +62,7 @@
   </div>
 
   <div id="adminContainer">
-    <section id="clase">
+    <section id="clase" class="disabled">
       <div class="notesBox rp-greyRuledBottom">
         <h3>
           <span>Clase</span>
@@ -80,7 +80,7 @@
       </div>
     </section>
 
-    <section id="alumnos">
+    <section id="alumnos" class="disabled">
       <div class="notesBox rp-greyRuledBottom">
         <h3>
           <span>Alumnos</span>
@@ -91,6 +91,8 @@
 		  	<!--<div id="invitados">
             </div>-->
             <button id="demoShareButton" class="rp-button rp-button-share">Agregar</button>
+			<a href="#" onmouseover="this.href = window.location.href" target="_blank">open this
+         	 same document in a new window</a> and collaborate with yourself.
 		  </div>
           
 		  <div id="collaborators_main">
@@ -111,66 +113,24 @@
 		  <input type="checkbox" name="preguntas" value="" onchange="alert('Función todavía no habilitada')"> Habilitar envío de preguntas<br>
 		  <input type="checkbox" name="ejercicios" value="" onchange="alert('Función todavía no habilitada')"> Habilitar resolución ejercicios<br>
 		  <input type="checkbox" name="guardar" value="" onchange="alert('Función todavía no habilitada')"> Guardar Resultados<br>
-		  <input type="checkbox" name="interactividad" value="" onchange="alert('Función todavía no habilitada')"> Deshabilitar interactividad
+		  <input type="checkbox" name="interactividad" value="" onchange="alert('Función todavía no habilitada')"> Deshabilitar interactividad<br>
+
+        <button id="demoAuthorizeButton" disabled="true" class="rp-button rp-button-submit" style="display:none">Authorize</button>
+        <div id="authorizedMessage" style="display:none; padding-top: 10px;">
+          <span style="font-size: 20px; color: green;">&#10003;</span>
+          La aplicación esta lista!
         </div>
+        </div>
+
+
+   
+      </div>
       </div>
     </section>
 
   </div>
 
   <div id="leftContainer">
-
-    <section id="demoUnauthorizedOverlay">
-      <div class="notesBox rp-greyRuledBottom">
-        <h3>
-          <span>Step 1</span><span style="color: #777; margin-left: 10px;">Authorize</span>
-        </h3>
-      </div>
-      <div class="rp-section-content">
-        To use the Google Drive Realtime API Playground you must first
-        <button id="demoAuthorizeButton" disabled="true" class="rp-button rp-button-submit">Authorize</button>
-        the Playground.
-        <div id="authorizedMessage" style="display:none; padding-top: 10px;">
-          <span style="font-size: 20px; color: green;">&#10003;</span>
-          The Playground is authorized to use the Google Drive Realtime service!
-        </div>
-      </div>
-    </section>
-
-    <section id="demoChooseDocument" class="disabled">
-      <div class="notesBox rp-greyRuledTop rp-greyRuledBottom">
-        <h3>
-          <span>Step 2</span><span style="color: #777; margin-left: 10px;">Create or Open a document</span>
-        </h3>
-      </div>
-      <div class="rp-section-content">
-        You need to
-        <button id="createNewDoc" class="rp-button rp-button-red">Create</button>
-        a new document or
-        <button id="openExistingDoc" class="rp-button rp-button-submit">Open</button>
-         an existing document on which to collaborate.
-        <div id="documentNameContainer" style="display:none;">
-          <label for="documentName" style="line-height: 27px;">
-            <span style="font-size: 20px; color: green;">&#10003;</span>
-            You currently have a document opened named </label>
-            <input type="text" name="documentName" id="documentName" title="Change the file's name" style="margin-left: 5px;" value="" disabled="disabled" placeholder="...">
-        </div>
-      </div>
-    </section>
-
-    <section id="demoShare" class="disabled">
-      <div class="notesBox rp-greyRuledTop rp-greyRuledBottom">
-        <h3>
-          <span>Step 3</span><span style="color: #777; margin-left: 10px;">Share</span>
-        </h3>
-      </div>
-      <div class="rp-section-content" style="line-height: 30px;">
-        To collaborate you must
-        <button id="demoShareButton" class="rp-button rp-button-share">Share</button> this document
-        with other users or <a href="#" onmouseover="this.href = window.location.href" target="_blank">open this
-          same document in a new window</a> and collaborate with yourself.
-      </div>
-    </section>
 
     <section id="AbrirDocumento" class="disabled">
       <div class="notesBox rp-greyRuledTop rp-greyRuledBottom">
@@ -341,7 +301,7 @@
   </div>
 
   <div id="rightContainer">
-    <div id="fakeappbar">
+    <!-- <div id="fakeappbar">
       <button id="undoButton" disabled="true" class="rp-button">Undo</button>
       <button id="redoButton" disabled="true" class="rp-button">Redo</button>
     </div>
@@ -354,7 +314,7 @@
         </div>
         <div class="shadow" style="opacity: 0;"></div>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <script type="text/javascript">

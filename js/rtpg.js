@@ -63,8 +63,8 @@ rtpg.OPEN_SELECTOR = '#openExistingDoc';
 rtpg.CREATE_SELECTOR = '#createNewDoc';
 rtpg.AUTH_BUTTON_ID = 'demoAuthorizeButton';
 rtpg.AUTH_HOLDER_SELECTOR = '#demoUnauthorizedOverlay';
-rtpg.CREATE_DOC_HOLDER_SELECTOR = '#demoChooseDocument';
-rtpg.SHARE_DOC_HOLDER_SELECTOR = '#demoShare';
+rtpg.CREATE_DOC_HOLDER_SELECTOR = '#clase';
+rtpg.SHARE_DOC_HOLDER_SELECTOR = '#alumnos';
 rtpg.INITILIZED_MESSAGE_SELECTOR = '#realtimeInitialized';
 rtpg.COLLAB_HOLDER_SELECTOR = '#collabSections';
 rtpg.AUTHORIZED_MESSAGE_HOLDER_SELECTOR = '#authorizedMessage';
@@ -115,6 +115,19 @@ rtpg.onFileLoaded = function(doc) {
     var request = gapi.client.drive.files.get({
       'fileId' : rtclient.params['fileIds'].split(',')[0]
     });
+
+
+
+
+	//Check Docente o Alumno
+    var idFile = rtclient.params['fileIds'].split(',')[0];
+    //if(printFile(idFile)=="Francisco José Guerra") alert("OK");
+	//else alert("NO OK");
+   printFile(idFile);
+
+
+
+
     $('#documentName').attr('disabled', '');
     request.execute(function(resp) {
       $('#documentName').val(resp.title);
@@ -258,3 +271,27 @@ rtpg.getMe = function() {
   }
   return null;
 };
+
+function printFile(fileId) {
+  var request = gapi.client.drive.files.get({
+    'fileId': fileId
+  });
+
+  request.execute(function(resp) {
+
+	try{
+		var Admin = resp.ownerNames;;
+		}
+		catch(e){
+	}
+  prueba(Admin);
+  });
+
+}
+
+
+//CONTROL DE USUARIO
+function prueba(admin) {
+	alert(admin);
+}
+

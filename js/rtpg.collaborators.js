@@ -44,7 +44,6 @@ rtpg.collaborators.updateUi = function() {
     //img.css('background-color', collaborator.color);
     //$(rtpg.collaborators.COLLABORATORS_SELECTOR).append(img);
 
-
     var nombre = collaborator.displayName;
     $(rtpg.collaborators.COLLABORATORS_SELECTOR).append("<span>"+nombre+"</span><br>");
   }
