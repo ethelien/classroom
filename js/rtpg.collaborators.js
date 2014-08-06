@@ -60,12 +60,12 @@ rtpg.collaborators.connectRealtime = function(doc) {
 };
 
 rtpg.collaborators.onCollaboratorJoined = function(event) {
-  rtpg.log.logEvent(event, 'User opened the document');
+  //rtpg.log.logEvent(event, 'User opened the document');
   rtpg.collaborators.updateUi();
 };
 
 rtpg.collaborators.onCollaboratorLeft = function(event) {
-  rtpg.log.logEvent(event, 'User closed the document');
+  //rtpg.log.logEvent(event, 'User closed the document');
   rtpg.collaborators.updateUi();
   rtpg.list.garbageCollectReferenceIndices();
 };

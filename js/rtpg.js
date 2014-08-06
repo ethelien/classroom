@@ -284,14 +284,10 @@ function printFile(fileId) {
 		}
 		catch(e){
 	}
-  prueba(Admin);
+  control_usuario(Admin);
   });
 
 }
 
 
-//CONTROL DE USUARIO
-function prueba(admin) {
-	alert(admin);
-}
 
