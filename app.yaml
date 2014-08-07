@@ -14,6 +14,10 @@ handlers:
   static_dir: images
   secure: always
 
+- url: /html
+  static_dir: html
+  secure: always
+
 - url: /css
   static_dir: css
   secure: always

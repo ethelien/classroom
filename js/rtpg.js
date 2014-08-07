@@ -26,6 +26,7 @@
  * Realtime playground namespace.
  */
 var rtpg = rtpg || {};
+var fileID_aux = '';
 
 /** Your Application ID from the Google APIs Console. */
 rtpg.APP_ID = '232095489061';
@@ -89,6 +90,7 @@ rtpg.onFileLoaded = function(doc) {
   console.log('File loaded');
   console.log(doc);
   rtpg.realtimeDoc = doc;
+
   // Binding UI and listeners for demo data elements.
   for (var i = 0; i < rtpg.allDemos.length; i++) {
     var demo = rtpg.allDemos[i];
@@ -115,16 +117,6 @@ rtpg.onFileLoaded = function(doc) {
     var request = gapi.client.drive.files.get({
       'fileId' : rtclient.params['fileIds'].split(',')[0]
     });
-
-
-
-
-	//Check Docente o Alumno
-    var idFile = rtclient.params['fileIds'].split(',')[0];
-    //if(printFile(idFile)=="Francisco José Guerra") alert("OK");
-	//else alert("NO OK");
-   printFile(idFile);
-
 
 
 
@@ -155,8 +147,17 @@ rtpg.onFileLoaded = function(doc) {
   $(rtpg.COLLAB_HOLDER_SELECTOR).removeClass('disabled');
   //Re-enabling buttons to create or load docs
   $('#createNewDoc').removeClass('disabled');
-  $('#openExistingDoc').removeClass('disabled');
+
+  fileID_aux = rtclient.params['fileIds'].split(',')[0];
+  rtpg.usercontrol(fileID_aux);
+
 };
+
+rtpg.usercontrol = function(fileID_aux){
+
+   validar_usuario(fileID_aux);
+
+}
 
 // Register all types on Realtime doc creation.
 rtpg.registerTypes = function() {
@@ -272,7 +273,7 @@ rtpg.getMe = function() {
   return null;
 };
 
-function printFile(fileId) {
+function validar_usuario(fileId) {
   var request = gapi.client.drive.files.get({
     'fileId': fileId
   });
@@ -280,11 +281,20 @@ function printFile(fileId) {
   request.execute(function(resp) {
 
 	try{
-		var Admin = resp.ownerNames;;
+		var Admin = resp.ownerNames;
+		var title = resp.title;
+        console.log('Description: ' + resp.ownerNames);
 		}
 		catch(e){
 	}
-  control_usuario(Admin);
+
+    var collaborator = rtpg.getMe();
+    if(collaborator.displayName == Admin)
+	  alert("Soy Admin");
+    else{
+      alert("Soy Alumno");
+  	  control_usuario(Admin,title);
+    }
   });
 
 }

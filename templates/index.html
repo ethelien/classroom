@@ -57,79 +57,82 @@
     <div class="rp-social"></div>
   </header>
 
-  <div class="rp-appbar">
-    <h2 class="rp-appname">Panel de Administrador</h2>
-  </div>
-
-  <div id="adminContainer">
-    <section id="clase" class="disabled">
-      <div class="notesBox rp-greyRuledBottom">
-        <h3>
-          <span>Clase</span>
-        </h3>
-        <div class="rp-section-content">
-          <button id="createNewDoc" class="rp-button rp-button-red">Nueva</button>
-          <button id="openExistingDoc" class="rp-button rp-button-submit">Cargar</button>
-          <div id="documentNameContainer" style="display:none;">
-            <label for="documentName" style="line-height: 27px;">
-            <span style="font-size: 20px; color: green;">&#10003;</span>
-            Clase cargada correctamente</label><br>
-            <input type="text" name="documentName" id="documentName" title="Cambia el titulo de la clase" value="" disabled="disabled" placeholder="...">
-          </div>
+  <div id="panel">
+	  <div class="rp-appbar">
+		<h2 class="rp-appname">Panel de Administrador</h2>
+	    <div class="rp-section-content">
+			Para poder utilizar la aplicación primero debes 
+		    <button id="demoAuthorizeButton" disabled="true" class="rp-button rp-button-submit">Autorizarla</button>
         </div>
-      </div>
-    </section>
+	  </div>
 
-    <section id="alumnos" class="disabled">
-      <div class="notesBox rp-greyRuledBottom">
-        <h3>
-          <span>Alumnos</span>
-        </h3>
-        <div class="rp-section-content">
-		  <div id="invitados_main">
-            <h4> <span>Invitar:</span></h4>
-		  	<!--<div id="invitados">
-            </div>-->
-            <button id="demoShareButton" class="rp-button rp-button-share">Agregar</button>
-			<a href="#" onmouseover="this.href = window.location.href" target="_blank">open this
-         	 same document in a new window</a> and collaborate with yourself.
+	  <div id="adminContainer">
+		<section id="clase" class="disabled">
+		  <div class="notesBox rp-greyRuledBottom">
+		    <h3>
+		      <span>Clase</span>
+		    </h3>
+		    <div class="rp-section-content">
+		      <button id="createNewDoc" class="rp-button rp-button-red">Nueva</button>
+		      <button id="openExistingDoc" class="rp-button rp-button-submit">Cargar</button>
+		      <div id="documentNameContainer" style="display:none;">
+		        <label for="documentName" style="line-height: 27px;">
+		        <span style="font-size: 20px; color: green;">&#10003;</span>
+		        Clase cargada correctamente</label><br>
+		        <input type="text" name="documentName" id="documentName" title="Cambia el titulo de la clase" value="" disabled="disabled" placeholder="...">
+		      </div>
+		    </div>
 		  </div>
-          
-		  <div id="collaborators_main">
- 		    <h4> <span>Asistentes</span></h4>
-			<div id="collaborators">
-            </div>
+		</section>
+
+		<section id="alumnos" class="disabled">
+		  <div class="notesBox rp-greyRuledBottom">
+		    <h3>
+		      <span>Alumnos</span>
+		    </h3>
+		    <div class="rp-section-content">
+			  <div id="invitados_main">
+		        <h4> <span>Invitar:</span></h4>
+			  	<!--<div id="invitados">
+		        </div>-->
+		        <button id="demoShareButton" class="rp-button rp-button-share">Agregar</button>
+				<a href="#" onmouseover="this.href = window.location.href" target="_blank">open this
+		     	 same document in a new window</a> and collaborate with yourself.
+			  </div>
+		      
+			  <div id="collaborators_main">
+	 		    <h4> <span>Asistentes</span></h4>
+				<div id="collaborators">
+		        </div>
+			  </div>
+		    </div>
 		  </div>
-        </div>
-      </div>
-    </section>
+		</section>
 
-    <section id="opciones">
-      <div class="notesBox rp-greyRuledBottom">
-        <h3>
-          <span>Opciones</span>
-        </h3>
-        <div class="rp-section-content">
-		  <input type="checkbox" name="preguntas" value="" onchange="alert('Función todavía no habilitada')"> Habilitar envío de preguntas<br>
-		  <input type="checkbox" name="ejercicios" value="" onchange="alert('Función todavía no habilitada')"> Habilitar resolución ejercicios<br>
-		  <input type="checkbox" name="guardar" value="" onchange="alert('Función todavía no habilitada')"> Guardar Resultados<br>
-		  <input type="checkbox" name="interactividad" value="" onchange="alert('Función todavía no habilitada')"> Deshabilitar interactividad<br>
-
-        <button id="demoAuthorizeButton" disabled="true" class="rp-button rp-button-submit" style="display:none">Authorize</button>
-        <div id="authorizedMessage" style="display:none; padding-top: 10px;">
-          <span style="font-size: 20px; color: green;">&#10003;</span>
-          La aplicación esta lista!
-        </div>
-        </div>
+		<section id="opciones">
+		  <div class="notesBox rp-greyRuledBottom">
+		    <h3>
+		      <span>Opciones</span>
+		    </h3>
+		    <div class="rp-section-content">
+			  <input type="checkbox" name="preguntas" value="" onchange="alert('Función todavía no habilitada')"> Habilitar envío de preguntas<br>
+			  <input type="checkbox" name="ejercicios" value="" onchange="alert('Función todavía no habilitada')"> Habilitar resolución ejercicios<br>
+			  <input type="checkbox" name="guardar" value="" onchange="alert('Función todavía no habilitada')"> Guardar Resultados<br>
+			  <input type="checkbox" name="interactividad" value="" onchange="alert('Función todavía no habilitada')"> Deshabilitar interactividad<br>
+		      <div id="authorizedMessage" style="display:none; padding-top: 10px;">
+		        <span style="font-size: 20px; color: green;">&#10003;</span>
+			    La aplicación esta lista!
+		      </div>
+		    </div>
 
 
-   
-      </div>
-      </div>
-    </section>
+	   
+		  </div>
+		  </div>
+		</section>
 
+	  </div>
   </div>
-
   <div id="leftContainer">
 
     <section id="AbrirDocumento" class="disabled">

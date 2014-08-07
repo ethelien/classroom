@@ -5,11 +5,18 @@ $(".checkbox").change(function() {
 });
 
 //CONTROL DE USUARIO
-function control_usuario(admin) {
-	alert(admin);
-    //$(rtpg.CREATE_SELECTOR).addClass('disabled');
-    //$(rtpg.OPEN_SELECTOR).addClass('disabled');
-    //document.getElementById("clase").innerHTML = "PROBANDO";
-    $("#adminContainer" ).load( "html/user.html #clase" );
+function control_usuario(admin,title) {
+
+    $("#panel").load( "html/user.html" );
+	$(document).ready(function(){
+    	cargar_panel(title);
+	});
 }
+
+function cargar_panel(title){
+    //SI PONES EL ALERT DEL TITLE SI LO CARGA 'TIEMPOs' alert(title);
+    $("#titulo_asignatura").text(title);
+}
+
+
 

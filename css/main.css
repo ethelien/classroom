@@ -323,7 +323,7 @@ pre, pre.prettyprint {
  ------------------------------------------------------------------*/
 .rp-appbar .rp-appname {
   margin-right: 354px;
-  margin-left: 42px;
+  margin-left: 15px;
   height: 29px;
   float: left;
   font-size: 20px;
@@ -2439,6 +2439,12 @@ select > option {
 	margin-right: 10px;
 }
 
+/******* ADMIN **********/
+
+.rp-appbar .rp-section-content{
+float: right;
+}
+
 #clase{
 	float: left; 
 	width: 25%;
@@ -2494,3 +2500,23 @@ section#opciones .rp-section-content{
 section#opciones .notesBox{
 	height: 148px;
 }
+
+
+/******* USER **********/
+
+/*SECTION CLASE*/
+
+#clase_user{
+	float: left; 
+	width: 100%;
+	border: 1px 0px solid #ebebeb;
+}
+
+section#clase_user .rp-section-content{
+	padding: 10px 0px;
+}
+
+section#clase_user .notesBox{
+	height: 148px;
+}
+
