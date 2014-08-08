@@ -99,7 +99,16 @@ rtpg.onFileLoaded = function(doc) {
     demo.connectUi();
     demo.connectRealtime(doc);
   }
-  
+
+  gapi.client.load('drive', 'v2', function() {
+    var request = gapi.client.drive.files.get({
+      'fileId' : rtclient.params['fileIds'].split(',')[0]
+    });
+
+  fileID_aux = rtclient.params['fileIds'].split(',')[0];
+  rtpg.usercontrol(fileID_aux);
+
+/*  
   // Activating undo and redo buttons.
   var model = doc.getModel();
   $('#undoButton').click(function(){model.undo();});
@@ -117,7 +126,7 @@ rtpg.onFileLoaded = function(doc) {
     var request = gapi.client.drive.files.get({
       'fileId' : rtclient.params['fileIds'].split(',')[0]
     });
-
+*/
 
 
     $('#documentName').attr('disabled', '');
@@ -148,8 +157,8 @@ rtpg.onFileLoaded = function(doc) {
   //Re-enabling buttons to create or load docs
   $('#createNewDoc').removeClass('disabled');
 
-  fileID_aux = rtclient.params['fileIds'].split(',')[0];
-  rtpg.usercontrol(fileID_aux);
+  //fileID_aux = rtclient.params['fileIds'].split(',')[0];
+  //rtpg.usercontrol(fileID_aux);
 
 };
 
@@ -283,14 +292,16 @@ function validar_usuario(fileId) {
 	try{
 		var Admin = resp.ownerNames;
 		var title = resp.title;
-        console.log('Description: ' + resp.ownerNames);
+        //console.log('Description: ' + resp.ownerNames);
 		}
 		catch(e){
 	}
 
     var collaborator = rtpg.getMe();
-    if(collaborator.displayName == Admin)
+
+    if(collaborator.displayName == Admin){
 	  alert("Soy Admin");
+    }
     else{
       alert("Soy Alumno");
   	  control_usuario(Admin,title);

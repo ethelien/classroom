@@ -56,8 +56,10 @@ rtpg.ui.initScrollBoxes = function() {
  * Resize all elastic elements based on screen dimensions and other elements
  * dimensions.
  */
+
+
 rtpg.ui.resizeElements = function() {
-  $('#rightContainer').width($(document).width() -
+ /* $('#rightContainer').width($(document).width() -
       $('#leftContainer').width());
   if ($(window).scrollTop() >=
       ($('#rp-googlebar').outerHeight() + $('#logTitle').outerHeight() - 30)) {
@@ -76,7 +78,7 @@ rtpg.ui.resizeElements = function() {
         $(window).scrollTop());
     $('#rightContainer').css('position','relative');
     $('#rightContainer').css('top','');
-    $('#rightContainer').css('right','0');
+    $('#rightContainer').css('right','0');*/
   }
 };
 
