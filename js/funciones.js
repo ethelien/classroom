@@ -1,3 +1,7 @@
+/**
+Funciones UPV E-Class
+**/
+
 $(".checkbox").change(function() {
     if(this.checked) {
         alert("Opcion todavía no habilitada");
@@ -18,5 +22,10 @@ function cargar_panel_clase(title){
     $("#titulo_asignatura").text(title);
 }
 
-
-
+function add_zero(n) {
+    for(i=n.length;i<10;i++){
+		n = ("0" + n);
+	}
+   
+   return n;
+}

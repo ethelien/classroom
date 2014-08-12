@@ -67,7 +67,7 @@ rtpg.AUTH_HOLDER_SELECTOR = '#demoUnauthorizedOverlay';
 rtpg.CREATE_DOC_HOLDER_SELECTOR = '#clase';
 rtpg.SHARE_DOC_HOLDER_SELECTOR = '#alumnos';
 rtpg.INITILIZED_MESSAGE_SELECTOR = '#realtimeInitialized';
-rtpg.COLLAB_HOLDER_SELECTOR = '#collabSections';
+rtpg.COLLAB_HOLDER_SELECTOR = '#preguntas_respuestas';
 rtpg.AUTHORIZED_MESSAGE_HOLDER_SELECTOR = '#authorizedMessage';
 
 // Interval at which we check if the auth token needs to be refreshed in ms
@@ -257,7 +257,7 @@ rtpg.realTimeOptions = {
   registerTypes: rtpg.registerTypes,
   afterAuth: rtpg.afterAuth,
   newFileMimeType: null, // Using default.
-  defaultTitle: "New Realtime Playground File"
+  defaultTitle: "Nueva Clase"
 };
 
 // Returns the collaborator for the given session ID.

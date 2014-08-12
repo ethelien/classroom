@@ -78,8 +78,8 @@ rtpg.ui.resizeElements = function() {
         $(window).scrollTop());
     $('#rightContainer').css('position','relative');
     $('#rightContainer').css('top','');
-    $('#rightContainer').css('right','0');*/
-  }
+    $('#rightContainer').css('right','0');
+  }*/
 };
 
 rtpg.ui.matchSelectFromKey = function() {

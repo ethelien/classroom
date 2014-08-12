@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=9">
   <meta http-equiv="X-UA-Compatible" content="chrome=1" />
   <meta name="description"
-    content="The Google Drive Realtime API Playground allows you to experiment with the Google Drive Realtime API." />
+    content="UPV E-Class" />
   <meta name="keywords"
-    content="OAuth, Google, realtime, POST, GET, PUT, token, client id, Javascript, operational, transforms" />
-  <title>Google Drive Realtime API Playground</title>
+    content="UPV" />
+  <title>UPV E-Class</title>
 
   <link rel="stylesheet" href="//developers.google.com/_static/css/screen.css" type="text/css" media="screen" charset="utf-8">
   <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" />
@@ -319,22 +319,94 @@
 	-->
 	  </div>
 
-	  <div id="rightContainer">
-		<section id="preguntas_respuestas" class="disabled">
-		  <div class="notesBox rp-greyRuledTop rp-greyRuledBottom">
-		    <h3>
-		      <span>Preguntas y Respuestas</span>
-		    </h3>
-		  </div>
-		  <div id="div_pregresp" class="rp-section-content" style="line-height: 30px;">
-			<span>DIV DE PREGUNTAS</span>
-		  </div>
-	 	 <div id="div_consultas" class="rp-section-content" style="line-height: 30px;">
-			<span>DIV DE CONSULTAS</span>
-		  </div>
-        </section>
-	  </div> 
-  </div>
+		  <div id="rightContainer">
+			<section id="preguntas_respuestas" class="disabled">
+			  <div class="notesBox rp-greyRuledTop rp-greyRuledBottom">
+				<h3>
+				  <span>Pizarra Virtual</span>
+				</h3>
+			  </div>
+			  <div id="div_pregresp" class="rp-section-content" style="line-height: 30px;">
+				<div class="tabs">
+				   <div class="tab">
+					   <input type="radio" id="tab-1" name="tab-group-1" checked>
+					   <label for="tab-1">Preguntas</label>
+
+					   <div class="content"> 
+
+						<section id="collabMapDemo" class="rp-greyRuledBottom" style="padding-bottom: 60px">
+							<div id="problemas" class="rp-section-content">
+								<h4>Problemas</h4>
+							    <textarea rows="8" cols="50" id="ProblemasValue" type="text" placeholder="Escribe aquí la pregunta deseas enviar"></textarea>
+									<button id="ProblemasClean" class="rp-button">Limpiar</button>
+									<button id="ProblemasPut" class="rp-button">Enviar</button>
+									<!--<button id="demoMapRemove" class="rp-button" style="margin-bottom: 10px;">Remove selected item</button><br />-->
+									<button id="demoMapClear" class="rp-button" style="margin-bottom: 10px;">Clear the map</button><br />	
+							</div>	
+							<div id="cuestiones" class="rp-section-content">
+								<h4>Cuestiones</h4>
+							    <textarea rows="8" cols="50" id="CuestionesValue" type="text" placeholder="Escribe aquí la cuestión deseas enviar"></textarea>
+									<button id="CuestionesClean" class="rp-button">Limpiar</button>
+									<button id="CuestionesPut" class="rp-button">Enviar</button>
+									<!-- <button id="demoMapRemove" class="rp-button" style="margin-bottom: 10px;">Remove selected item</button><br />
+									<button id="demoMapClear" class="rp-button" style="margin-bottom: 10px;">Clear the map</button><br />-->	
+							</div>	
+					  	</section>
+
+					   </div>
+				   </div>
+				   <div class="tab">
+					   <input type="radio" id="tab-2" name="tab-group-1">
+					   <label for="tab-2">Respuestas</label>
+					   <div class="content"> 
+							<table>
+							  <tr>
+								<td style="text-align: center; color: grey; font-style: italic;">
+								  Keys
+								</td><td style="text-align: center; color: grey; font-style: italic;">
+								  Values
+								</td>
+							  </tr>
+							  <tr>
+								<td>
+								  <select size="90" id="ProblemasKeys"></select>
+								</td><td>
+								  <select size="90" id="ProblemasValues"></select>
+								</td>
+							  </tr>
+							</table>
+
+							<table>
+							  <tr>
+								<td style="text-align: center; color: grey; font-style: italic;">
+								  Keys
+								</td><td style="text-align: center; color: grey; font-style: italic;">
+								  Values
+								</td>
+							  </tr>
+							  <tr>
+								<td>
+								  <select size="9" id="CuestionesKeys"></select>
+								</td><td>
+								  <select size="90" id="CuestionesValues"></select>
+								</td>
+							  </tr>
+							</table>
+					   </div>
+				   </div>
+				</div>
+			  </div>
+		 	 <div id="div_consultas" class="rp-section-content" style="line-height: 30px;">
+				<section id="collabproblemas" class="rp-greyRuledBottom" style="padding-bottom: 20px">
+					<div class="rp-section-content">
+					  <h4>Consultas</h4>
+					  <textarea id="demoStringInput" style="margin-top: 10px"></textarea>
+					</div>
+				</section>
+			  </div>
+		    </section>
+		  </div> 
+	  </div>
 
   <!--<div id="rightContainer">
     <div id="fakeappbar">

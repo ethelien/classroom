@@ -16,35 +16,38 @@
 
 "use strict";
 
-/**
- * Namespace for Map Demo.
- */
-rtpg.map = rtpg.map || {};
 
+/**** Problemas *****/
+
+/**
+ * Namespace
+ */
+rtpg.map 			= rtpg.map || {};
 rtpg.allDemos.push(rtpg.map);
 
+
 /**
- * Realtime model's field name for Map Demo.
+ * Realtime model's field name.
  */
 rtpg.map.FIELD_NAME = 'demo_map';
 
 /**
- * Realtime model's field for Map Demo.
+ * Realtime model's field.
  */
 rtpg.map.field = null;
-
-rtpg.map.START_KEYS = ({"Key 1":"Value 1", "Key 2":"Value 2", "Key 3":"Value 3", "Key 4":"Value 4"});
+rtpg.map.START_KEYS = ({});
 
 /**
- * DOM selector for the elements for Map Demo.
+ * DOM selector for the elements for Problemas.
  */
-rtpg.map.MAP_KEYS_SELECTOR = '#demoMapKeys';
-rtpg.map.MAP_VALUES_SELECTOR = '#demoMapValues';
+rtpg.map.MAP_KEYS_SELECTOR = '#ProblemasKeys';
+rtpg.map.MAP_VALUES_SELECTOR = '#ProblemasValues';
 rtpg.map.REMOVE_SELECTOR = '#demoMapRemove';
 rtpg.map.CLEAR_SELECTOR = '#demoMapClear';
-rtpg.map.PUT_SELECTOR = '#demoMapPut';
-rtpg.map.PUT_KEY_SELECTOR = '#demoMapKey';
-rtpg.map.PUT_VALUE_SELECTOR = '#demoMapValue';
+rtpg.map.PUT_SELECTOR = '#ProblemasPut';
+rtpg.map.CLEAN_SELECTOR = '#ProblemasClean';
+//rtpg.map.PUT_KEY_SELECTOR = '#demoMapKey';
+rtpg.map.PUT_VALUE_SELECTOR = '#ProblemasValue';
 
 
 rtpg.map.loadField = function() {
@@ -83,7 +86,7 @@ rtpg.map.updateUi = function() {
 
 rtpg.map.onRealtime = function(evt) {
   rtpg.map.updateUi();
-  rtpg.log.logEvent(evt, 'Map Value Changed');
+  //rtpg.log.logEvent(evt, 'Map Value Changed');
 };
 
 
@@ -100,9 +103,21 @@ rtpg.map.onClearMap = function(evt) {
 };
 
 rtpg.map.onPutMap = function(evt) {
-  var key = $(rtpg.map.PUT_KEY_SELECTOR).val();
+  //var key = $(rtpg.map.PUT_KEY_SELECTOR).val();
+  var keys = rtpg.map.field.keys();
+  if(keys.length==0) var aux="1";
+  else{ 
+	keys.sort();
+    keys.reverse();
+    var aux = ((parseInt(keys[0]))+1).toString();
+  }
+
+  var key = add_zero(aux); 
   var val = $(rtpg.map.PUT_VALUE_SELECTOR).val();
   rtpg.map.field.set(key, val);
+
+  alert("Su pregunta ha sido enviada correctamente");
+  $(rtpg.map.PUT_VALUE_SELECTOR).val('');
 };
 
 
@@ -110,9 +125,15 @@ rtpg.map.connectUi = function() {
   $(rtpg.map.REMOVE_SELECTOR).click(rtpg.map.onRemoveItem);
   $(rtpg.map.CLEAR_SELECTOR).click(rtpg.map.onClearMap);
   $(rtpg.map.PUT_SELECTOR).click(rtpg.map.onPutMap);
+  $(rtpg.map.CLEAN_SELECTOR).click(rtpg.map.CleanText);
 };
 
 
 rtpg.map.connectRealtime = function() {
   rtpg.map.field.addEventListener(gapi.drive.realtime.EventType.VALUE_CHANGED, rtpg.map.onRealtime);
 };
+
+rtpg.map.CleanText = function(){
+  $(rtpg.map.PUT_VALUE_SELECTOR).val('');
+}
+
