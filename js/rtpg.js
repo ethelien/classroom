@@ -81,6 +81,7 @@ rtpg.initializeModel = function(model) {
   var l = rtpg.allDemos.length;
   for (var i = 0; i < l; i++) {
     var demo = rtpg.allDemos[i];
+    alert(model);
     demo.initializeModel(model);
   }
 };
@@ -156,6 +157,7 @@ rtpg.onFileLoaded = function(doc) {
   $(rtpg.COLLAB_HOLDER_SELECTOR).removeClass('disabled');
   //Re-enabling buttons to create or load docs
   $('#createNewDoc').removeClass('disabled');
+  $('#openExistingDoc').removeClass('disabled');
 
   //fileID_aux = rtclient.params['fileIds'].split(',')[0];
   //rtpg.usercontrol(fileID_aux);
@@ -282,33 +284,6 @@ rtpg.getMe = function() {
   return null;
 };
 
-function validar_usuario(fileId) {
-  var request = gapi.client.drive.files.get({
-    'fileId': fileId
-  });
-
-  request.execute(function(resp) {
-
-	try{
-		var Admin = resp.ownerNames;
-		var title = resp.title;
-        //console.log('Description: ' + resp.ownerNames);
-		}
-		catch(e){
-	}
-
-    var collaborator = rtpg.getMe();
-
-    if(collaborator.displayName == Admin){
-	  alert("Soy Admin");
-    }
-    else{
-      alert("Soy Alumno");
-  	  control_usuario(Admin,title);
-    }
-  });
-
-}
 
 
 
