@@ -15,7 +15,9 @@ function control_usuario(admin,title) {
     $("#contenedorcentral").load( "html/clase_user.html" );
 	$(document).ready(function(){
     	cargar_panel_clase(title);
- 		rtpg.map.updateUi();
+ 		rtpg.map.updateUiAlumno();
+	    rtpg.map.updateDonAlumno();
+	    rtpg.map.connectUiAlumno();
 	});
 }
 
@@ -70,11 +72,11 @@ function obtener_alumno() {
 function generar_html(key,val,check){
 
 if(check){
-var html = " <div class='tab'><input type='radio' id='tab-"+key+"' name='tab-group-1' checked><label for='tab-"+key+"'>Preguntas</label><div class='content'><section id='collabMapDemo' class='rp-greyRuledBottom' style='padding-bottom: 60px'><div id='respuestas' class='rp-section-content'><h4>"+val+"</h4><textarea rows='8' cols='50' id='RespuestaValue' type='text' placeholder='Escribe aquí la pregunta deseas enviar'></textarea><button id='RespuestaClean' value='"+key+"' class='rp-button'>Limpiar</button><button id='RespuestaPut' value='"+key+"' class='rp-button'>Enviar</button></div></section></div></div>";
+var html = " <div class='tab'><input type='radio' id='tab-"+key+"' name='tab-group-1' checked><label for='tab-"+key+"'>Preguntas</label><div class='content'><section id='collabMapDemo' class='rp-greyRuledBottom' style='padding-bottom: 60px'><div id='respuestas' class='rp-section-content'><h4>"+val+"</h4><textarea rows='8' cols='50' id='RespuestaValue_"+key+"' type='text' placeholder='Escribe aquí la pregunta deseas enviar'></textarea><button id='RespuestaClean_"+key+"' value='"+key+"' class='rp-button'>Limpiar</button><button id='RespuestaPut_"+key+"' value='"+key+"' class='rp-button'>Enviar</button></div></section></div></div>";
 }
 
 else{
-var html = " <div class='tab'><input type='radio' id='tab-"+key+"' name='tab-group-1'><label for='tab-"+key+"'>Preguntas</label><div class='content'><section id='collabMapDemo' class='rp-greyRuledBottom' style='padding-bottom: 60px'><div id='respuestas' class='rp-section-content'><h4>"+val+"</h4><textarea rows='8' cols='50' id='RespuestaValue' type='text' placeholder='Escribe aquí la pregunta deseas enviar'></textarea><button id='RespuestaClean' value='"+key+"' class='rp-button'>Limpiar</button><button id='RespuestaPut' value='"+key+"' class='rp-button'>Enviar</button></div></section></div></div>";
+var html = " <div class='tab'><input type='radio' id='tab-"+key+"' name='tab-group-1'><label for='tab-"+key+"'>Preguntas</label><div class='content'><section id='collabMapDemo' class='rp-greyRuledBottom' style='padding-bottom: 60px'><div id='respuestas' class='rp-section-content'><h4>"+val+"</h4><textarea rows='8' cols='50' id='RespuestaValue_"+key+"' type='text' placeholder='Escribe aquí la pregunta deseas enviar'></textarea><button id='RespuestaClean_"+key+"' value='"+key+"' class='rp-button'>Limpiar</button><button id='RespuestaPut_"+key+"' value='"+key+"' class='rp-button'>Enviar</button></div></section></div></div>";
 }
 
 return html;
