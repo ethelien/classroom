@@ -51,6 +51,7 @@ rtpg.map.PUT_VALUE_SELECTOR = '#ProblemasValue';
 rtpg.map.MAP_KEYS_SELECTOR_NOMBRE = '#ProblemasNombre';
 rtpg.map.MAP_VALUES_SELECTOR_RESPUESTA = '#ProblemasRespuesta';
 rtpg.map.MAP_PES_ALUMNO = '#preguntas_alumno';
+rtpg.map.MAP_RES_ALUMNO = '#respuestas_alumno';
 
 rtpg.map.loadField = function() {
   rtpg.map.field = rtpg.getField(rtpg.map.FIELD_NAME);
@@ -65,8 +66,10 @@ rtpg.map.initializeModel = function(model) {
   model.getRoot().set(rtpg.map.FIELD_NAME, field);
 }
 
-
+/*
 rtpg.map.updateUi = function() {
+
+  var key_aux = null;
 
   $(rtpg.map.MAP_KEYS_SELECTOR).empty();
   $(rtpg.map.MAP_VALUES_SELECTOR).empty();
@@ -85,9 +88,6 @@ rtpg.map.updateUi = function() {
     $(rtpg.map.MAP_KEYS_SELECTOR).append(newOptionKey);
     $(rtpg.map.MAP_VALUES_SELECTOR).append(newOptionValue);
 
-    //var elem = val.split('/*//*/');
-    //alert(elem[0]+" - "+elem[1]);
-
     if(key.length>"3"){
 		var elem = key.split('-');
 		alert(elem[0]+" - "+elem[1]);
@@ -105,11 +105,72 @@ rtpg.map.updateUi = function() {
   $(rtpg.map.MAP_VALUES_SELECTOR).attr('size', l);
   $(rtpg.map.MAP_KEYS_SELECTOR_NOMBRE).attr('size', l);
   $(rtpg.map.MAP_VALUES_SELECTOR_RESPUESTA).attr('size', l);
+}*/
+
+rtpg.map.updateRespuestasDocente = function(){
+
+  alert("updateRespuestasDocente");
+
 }
+
+
+rtpg.map.updateUi = function() {
+
+  //alert("updateUiDocente");
+  var key_aux = null;
+  var check = true; 
+
+  $(rtpg.map.MAP_RES_ALUMNO).empty();
+
+  var keys = rtpg.map.field.keys();
+  keys.sort();
+  var l = keys.length;
+
+
+  for (var i=0; i < l; i++) {
+
+    var key = keys[i];
+    var val = obtener_pregunta(rtpg.map.field.get(key));
+
+	if(key.length=="3"){
+
+		eval("rtpg.map.PROBLEMAS_NOMBRE_"+key+"= '#ProblemasNombre_"+key+"'");
+		eval("rtpg.map.PROBLEMAS_RESPUESTA_"+key+"= '#ProblemasRespuesta_"+key+"'");
+
+    	eval("$(rtpg.map.PROBLEMAS_NOMBRE_"+key+").empty()");
+    	eval("$(rtpg.map.PROBLEMAS_RESPUESTA_"+key+").empty()");
+
+		if(i==0)check=true;
+		else check=false;
+
+        var html = generar_resultados(key,val,check);
+		$(rtpg.map.MAP_RES_ALUMNO).append(html);
+
+        key_aux = key;
+   }
+
+    if(key.length>"3"){
+		var elem = key.split('-');
+		//alert(elem[0]+" - "+elem[1]);
+        //alert(val);
+
+		var newOptionKey = $('<option>').val(elem[1]).text('\xa0\xa0' + elem[1]);
+		var newOptionValue = $('<option>').val(val).text('\xa0\xa0' + val);
+
+    	eval("$(rtpg.map.PROBLEMAS_NOMBRE_"+key_aux+").append(newOptionKey)");
+   		eval("$(rtpg.map.PROBLEMAS_RESPUESTA_"+key_aux+").append(newOptionValue)");
+	}
+
+
+  }
+  l = l <= 1 ? 2 : l;
+  $(rtpg.map.MAP_RES_ALUMNO).attr('size', l);
+}
+
 
 rtpg.map.updateUiAlumno = function() {
 
-  alert("updateUiAlumno");
+  //alert("updateUiAlumno");
 
   $(rtpg.map.MAP_PES_ALUMNO).empty();
 
@@ -122,13 +183,13 @@ rtpg.map.updateUiAlumno = function() {
     var key = keys[i];
 
 	if(key.length=="3"){
-		var val = rtpg.map.field.get(key);
+		var val = obtener_pregunta(rtpg.map.field.get(key));
 
 		if(i==0)check=true;
 		else check=false;
 		
-		var html = generar_html(key,val,check);
-		alert(html);
+		var html = generar_pregunta(key,val,check);
+		//alert(html);
 		$(rtpg.map.MAP_PES_ALUMNO).append(html);
 	}
   }
@@ -139,6 +200,8 @@ rtpg.map.updateUiAlumno = function() {
 
 
 rtpg.map.onRealtime = function(evt) {
+  //rtpg.map.updateRespuestasDocente();
+  //rtpg.map.updateDonDocente();
   rtpg.map.updateUi();
   rtpg.map.updateUiAlumno();
   rtpg.map.updateDonAlumno();
@@ -162,7 +225,6 @@ rtpg.map.onClearMap = function(evt) {
 
 rtpg.map.onPutMap = function(evt) {
 
-  //var key = $(rtpg.map.PUT_KEY_SELECTOR).val();
   var keys = rtpg.map.field.keys();
   if(keys.length==0) var aux="1";
   else{ 
@@ -174,8 +236,6 @@ rtpg.map.onPutMap = function(evt) {
   var key = add_zero(aux); 
   var val = $(rtpg.map.PUT_VALUE_SELECTOR).val();
 
-  //PARA ENVIAR RESPUESTAS Y SABER NOMBRE ALUMNO LA ENVIA
-  //var val_aux = obtener_alumno()+("/*//*/")+val;
 
   rtpg.map.field.set(key, val);
 
@@ -201,10 +261,13 @@ rtpg.map.connectUi = function() {
   $(rtpg.map.CLEAR_SELECTOR).click(rtpg.map.onClearMap);
   $(rtpg.map.PUT_SELECTOR).click(rtpg.map.onPutMap);
   $(rtpg.map.CLEAN_SELECTOR).click(rtpg.map.CleanText);
+  //Cuestiones
+  $(rtpg.map.PUT_CUESTIONES).click(rtpg.map.onPutMapCuestiones);
+  $(rtpg.map.CLEAN_CUESTIONES).click(rtpg.map.CleanTextCuestiones);
 };
 
 rtpg.map.connectUiAlumno = function() {
-  alert("ContectUiAlumno");
+  //alert("ContectUiAlumno");
 
   var keys = rtpg.map.field.keys();
   keys.sort();
@@ -233,7 +296,7 @@ rtpg.map.CleanRespuesta = function(evt){
 }
 
 rtpg.map.updateDonAlumno = function(){
-  alert("updateDon");
+  //alert("updateDon");
     
   var keys = rtpg.map.field.keys();
   keys.sort();
@@ -249,13 +312,67 @@ rtpg.map.updateDonAlumno = function(){
   }
 }
 
+rtpg.map.updateDonDocente = function(){
+  //alert("updateDonDocente");
+    
+  var keys = rtpg.map.field.keys();
+  keys.sort();
+  var l = keys.length;
+
+  for (var i=0; i < l; i++) {
+    var key = keys[i];
+	if(key.length=="3"){
+		eval("rtpg.map.PROBLEMAS_NOMBRE_"+key+"= '#ProblemasNombre_"+key+"'");
+		eval("rtpg.map.PROBLEMAS_RESPUESTA_"+key+"= '#ProblemasRespuesta_"+key+"'");
+	}
+  }
+}
+
 rtpg.map.updateAlumno = function(){
 	 rtpg.map.updateUiAlumno();
 	 rtpg.map.updateDonAlumno();
 	 rtpg.map.connectUiAlumno();
 }
 
-/**** CUESTIONES *****/
+
+/***** CUESTIONES ****/
+
+rtpg.map.PUT_CUESTIONES = '#CuestionesPut';
+rtpg.map.CLEAN_CUESTIONES = '#CuestionesClean';
+rtpg.map.PUT_VALUE_CUESTIONES = '#CuestionesValue';
+
+rtpg.map.onPutMapCuestiones = function(evt) {
+
+  var keys = rtpg.map.field.keys();
+  if(keys.length==0) var aux="1";
+  else{ 
+	keys.sort();
+	keys.reverse();
+	var aux = ((parseInt(keys[0]))+1).toString();
+  }
+
+  var key = add_zero(aux); 
+  var val = $(rtpg.map.PUT_VALUE_CUESTIONES).val();
+  var opciones = leer_valores_cuestionario();
+
+  val+=opciones;
+  rtpg.map.field.set(key, val);
+
+  alert("Su cuestión ha sido enviada correctamente");
+  $(rtpg.map.PUT_VALUE_CUESTIONES).val('');
+  limpiar_valores_cuestionario();
+
+};
+
+rtpg.map.CleanTextCuestiones = function(){
+  $(rtpg.map.PUT_VALUE_CUESTIONES).val('');
+};
+
+
+
+
+/**** CONSULTAS *****/ /* MONTADO PARA QUE FUNCIONE COMO UN SEGUNDO MAP [Antes cuestiones]*/
+
 
 /**
  * Namespace
@@ -278,14 +395,14 @@ rtpg.map_cuestiones.START_KEYS = ({"Key 1":"Value 1", "Key 2":"Value 2", "Key 3"
 /**
  * DOM selector for the elements for Problemas.
  */
-rtpg.map_cuestiones.MAP_KEYS_SELECTOR = '#CuestionesKeys';
-rtpg.map_cuestiones.MAP_VALUES_SELECTOR = '#CuestionesValues';
+rtpg.map_cuestiones.MAP_KEYS_SELECTOR = '#ConsultasKeys';
+rtpg.map_cuestiones.MAP_VALUES_SELECTOR = '#ConsultasValues';
 rtpg.map_cuestiones.REMOVE_SELECTOR = '#demoMapRemove';
 rtpg.map_cuestiones.CLEAR_SELECTOR = '#demoMapClear';
-rtpg.map_cuestiones.PUT_SELECTOR = '#CuestionesPut';
-rtpg.map_cuestiones.CLEAN_SELECTOR = '#CuestionesClean';
+rtpg.map_cuestiones.PUT_SELECTOR = '#ConsultasPut';
+rtpg.map_cuestiones.CLEAN_SELECTOR = '#ConsultasClean';
 //rtpg.map.PUT_KEY_SELECTOR = '#demoMapKey';
-rtpg.map_cuestiones.PUT_VALUE_SELECTOR = '#CuestionesValue';
+rtpg.map_cuestiones.PUT_VALUE_SELECTOR = '#ConsultasValue';
 
 
 rtpg.map_cuestiones.loadField = function() {

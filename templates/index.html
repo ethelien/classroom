@@ -346,8 +346,19 @@
 							<div id="cuestiones" class="rp-section-content">
 								<h4>Cuestiones</h4>
 							    <textarea rows="8" cols="50" id="CuestionesValue" type="text" placeholder="Escribe aquí la cuestión deseas enviar"></textarea>
-									<button id="CuestionesClean" class="rp-button" value="">Limpiar</button>
-									<button id="CuestionesPut" class="rp-button" value="">Enviar</button>
+
+								<form id="opciones_cuestiones" action="">
+									<table>
+										<tr><td>A: </td><td><input type="text" id="option1" name="option1"></td><tr>
+										<tr><td>B: </td><td><input type="text" id="option2" name="option2"></td><tr>
+										<tr><td>C: </td><td><input type="text" id="option3" name="option3"></td><tr>
+										<tr><td>D: </td><td><input type="text" id="option4" name="option4"></td><tr>
+									</table>		
+								</form>
+
+								<button id="CuestionesClean" class="rp-button" value="">Limpiar</button>
+								<button id="CuestionesPut" class="rp-button" value="">Enviar</button>
+							
 									<!-- <button id="demoMapRemove" class="rp-button" style="margin-bottom: 10px;">Remove selected item</button><br />
 									<button id="demoMapClear" class="rp-button" style="margin-bottom: 10px;">Clear the map</button><br />-->	
 							</div>	
@@ -358,59 +369,63 @@
 				   <div class="tab">
 					   <input type="radio" id="tab-2" name="tab-group-1">
 					   <label for="tab-2">Respuestas</label>
+
 					   <div class="content"> 
-							<table>
-							  <tr>
-								<td style="text-align: center; color: grey; font-style: italic;">
-								  Keys
-								</td><td style="text-align: center; color: grey; font-style: italic;">
-								  Values
-								</td>
-							  </tr>
-							  <tr>
-								<td>
-								  <select size="90" id="ProblemasKeys"></select>
-								</td><td>
-								  <select size="90" id="ProblemasValues"></select>
-								</td>
-							  </tr>
-							</table>
+		                   	<div id="respuestas_alumno" class="tabs"></div>  
+						   <!--<div class="content"> 
+								<table>
+								  <tr>
+									<td style="text-align: center; color: grey; font-style: italic;">
+									  Keys
+									</td><td style="text-align: center; color: grey; font-style: italic;">
+									  Values
+									</td>
+								  </tr>
+								  <tr>
+									<td>
+									  <select size="90" id="ProblemasKeys"></select>
+									</td><td>
+									  <select size="90" id="ProblemasValues"></select>
+									</td>
+								  </tr>
+								</table>
 
-							<table>
-							  <tr>
-								<td style="text-align: center; color: grey; font-style: italic;">
-								  Keys
-								</td><td style="text-align: center; color: grey; font-style: italic;">
-								  Values
-								</td>
-							  </tr>
-							  <tr>
-								<td>
-								  <select size="9" id="CuestionesKeys"></select>
-								</td><td>
-								  <select size="90" id="CuestionesValues"></select>
-								</td>
-							  </tr>
-							</table>
+								<table>
+								  <tr>
+									<td style="text-align: center; color: grey; font-style: italic;">
+									  Keys
+									</td><td style="text-align: center; color: grey; font-style: italic;">
+									  Values
+									</td>
+								  </tr>
+								  <tr>
+									<td>
+									  <select size="9" id="CuestionesKeys"></select>
+									</td><td>
+									  <select size="90" id="CuestionesValues"></select>
+									</td>
+								  </tr>
+								</table>
 
-							<table>
-							  <tr>
-								<td style="text-align: center; color: grey; font-style: italic;">
-								  ALUMNOS
-								</td><td style="text-align: center; color: grey; font-style: italic;">
-								  RESPUESTA
-								</td>
-							  </tr>
-							  <tr>
-								<td>
-								  <select size="9" id="ProblemasNombre"></select>
-								</td><td>
-								  <select size="90" id="ProblemasRespuesta"></select>
-								</td>
-							  </tr>
-							</table>
+								<table>
+								  <tr>
+									<td style="text-align: center; color: grey; font-style: italic;">
+									  ALUMNOS
+									</td><td style="text-align: center; color: grey; font-style: italic;">
+									  RESPUESTA
+									</td>
+								  </tr>
+								  <tr>
+									<td>
+									  <select size="9" id="ProblemasNombre"></select>
+									</td><td>
+									  <select size="90" id="ProblemasRespuesta"></select>
+									</td>
+								  </tr>
+								</table>
 
-					   </div>
+						   </div>-->
+                       </div>
 				   </div>
 				</div>
 			  </div>

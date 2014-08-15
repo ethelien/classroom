@@ -81,7 +81,6 @@ rtpg.initializeModel = function(model) {
   var l = rtpg.allDemos.length;
   for (var i = 0; i < l; i++) {
     var demo = rtpg.allDemos[i];
-    alert(model);
     demo.initializeModel(model);
   }
 };

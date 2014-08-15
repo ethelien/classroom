@@ -2515,18 +2515,18 @@ section#opciones .notesBox{
 #contenedorcentral{
 	width: 100%;
 	border-bottom: 1px solid #EBEBEB;
-    min-height: 517px;
+    min-height: 585px;
     width: 100%;
 }
 
 /*TRANSPARENCIAS*/
 
 #AbrirDocumento{
-   height: 500px;
+   height: 550px;
 }
 
 #transparencias{
-	height: 400px;
+	height: 450px;
 	width: 100%
 }
 
@@ -2538,7 +2538,7 @@ section#opciones .notesBox{
 /* PREGUNTAS Y RESPUESTAS */
 
 #preguntas_respuestas{
-   min-height: 500px;
+   min-height: 561px;
 }
 
 #preguntas_respuestas .notesBox{
@@ -2563,8 +2563,12 @@ section#opciones .notesBox{
  border-top: 1px solid #E5E5E5;
 }
 
-textarea#ProblemasValue, textarea#CuestionesValue  {
+textarea#ProblemasValue {
 	width: 100%;
+}
+
+textarea#CuestionesValue{
+	width: 50%;
 }
 
 button#ProblemasPut, button#ProblemasClean, button#CuestionesPut, button#CuestionesClean  {
@@ -2572,8 +2576,29 @@ button#ProblemasPut, button#ProblemasClean, button#CuestionesPut, button#Cuestio
 	margin: 0 5px;
 }
 
-section.collabMapDemo .rp-greyRuledBottom{
-	border: none;
+section#collabMapDemo{
+	border-bottom: 0px;
+}
+
+#respuestas_alumno select{
+	width: 300px;
+}
+
+#respuestas textarea{
+	width: 100%;
+}
+
+#respuestas button{
+	float: right;
+	margin: 0px 5px;
+}
+
+#opciones_cuestiones{
+	float: right;
+}
+
+#opciones_cuestiones table{
+	width: 100%;
 }
 
 /******* USER **********/
@@ -2600,7 +2625,7 @@ section#clase_user .notesBox{
 
 .tabs { /* es el rectángulo contenedor */
 	margin: 0px auto;
-	min-height: 469px;
+	min-height: 519px;
 	position: relative;
 	width: 100%;
 }
