@@ -66,57 +66,14 @@ rtpg.map.initializeModel = function(model) {
   model.getRoot().set(rtpg.map.FIELD_NAME, field);
 }
 
-/*
-rtpg.map.updateUi = function() {
-
-  var key_aux = null;
-
-  $(rtpg.map.MAP_KEYS_SELECTOR).empty();
-  $(rtpg.map.MAP_VALUES_SELECTOR).empty();
-  $(rtpg.map.MAP_KEYS_SELECTOR_NOMBRE).empty();
-  $(rtpg.map.MAP_VALUES_SELECTOR_RESPUESTA).empty();
-
-  var keys = rtpg.map.field.keys();
-  keys.sort();
-  var l = keys.length;
-
-  for (var i=0; i < l; i++) {
-    var key = keys[i];
-    var val = rtpg.map.field.get(key);
-    var newOptionKey = $('<option>').val(key).text('\xa0\xa0' + key);
-    var newOptionValue = $('<option>').val(val).text('\xa0\xa0' + val);
-    $(rtpg.map.MAP_KEYS_SELECTOR).append(newOptionKey);
-    $(rtpg.map.MAP_VALUES_SELECTOR).append(newOptionValue);
-
-    if(key.length>"3"){
-		var elem = key.split('-');
-		alert(elem[0]+" - "+elem[1]);
-
-		var newOptionKey = $('<option>').val(elem[1]).text('\xa0\xa0' + elem[1]);
-		var newOptionValue = $('<option>').val(val).text('\xa0\xa0' + val);
-		$(rtpg.map.MAP_KEYS_SELECTOR_NOMBRE).append(newOptionKey);
-		$(rtpg.map.MAP_VALUES_SELECTOR_RESPUESTA).append(newOptionValue);
-	}
-
-
-  }
-  l = l <= 1 ? 2 : l;
-  $(rtpg.map.MAP_KEYS_SELECTOR).attr('size', l);
-  $(rtpg.map.MAP_VALUES_SELECTOR).attr('size', l);
-  $(rtpg.map.MAP_KEYS_SELECTOR_NOMBRE).attr('size', l);
-  $(rtpg.map.MAP_VALUES_SELECTOR_RESPUESTA).attr('size', l);
-}*/
-
 rtpg.map.updateRespuestasDocente = function(){
 
   alert("updateRespuestasDocente");
 
 }
 
-
 rtpg.map.updateUi = function() {
 
-  //alert("updateUiDocente");
   var key_aux = null;
   var check = true; 
 
@@ -143,7 +100,7 @@ rtpg.map.updateUi = function() {
 		if(i==0)check=true;
 		else check=false;
 
-        var html = generar_resultados(key,val,check);
+        var html = generar_resultados(key,val[0],check);
 		$(rtpg.map.MAP_RES_ALUMNO).append(html);
 
         key_aux = key;
@@ -151,11 +108,9 @@ rtpg.map.updateUi = function() {
 
     if(key.length>"3"){
 		var elem = key.split('-');
-		//alert(elem[0]+" - "+elem[1]);
-        //alert(val);
 
 		var newOptionKey = $('<option>').val(elem[1]).text('\xa0\xa0' + elem[1]);
-		var newOptionValue = $('<option>').val(val).text('\xa0\xa0' + val);
+		var newOptionValue = $('<option>').val(val[0]).text('\xa0\xa0' + val[0]);
 
     	eval("$(rtpg.map.PROBLEMAS_NOMBRE_"+key_aux+").append(newOptionKey)");
    		eval("$(rtpg.map.PROBLEMAS_RESPUESTA_"+key_aux+").append(newOptionValue)");
@@ -168,45 +123,12 @@ rtpg.map.updateUi = function() {
 }
 
 
-rtpg.map.updateUiAlumno = function() {
-
-  //alert("updateUiAlumno");
-
-  $(rtpg.map.MAP_PES_ALUMNO).empty();
-
-  var keys = rtpg.map.field.keys();
-  var check = true;
-  keys.sort();
-
-  var l = keys.length;
-  for (var i=0; i < l; i++) {
-    var key = keys[i];
-
-	if(key.length=="3"){
-		var val = obtener_pregunta(rtpg.map.field.get(key));
-
-		if(i==0)check=true;
-		else check=false;
-		
-		var html = generar_pregunta(key,val,check);
-		//alert(html);
-		$(rtpg.map.MAP_PES_ALUMNO).append(html);
-	}
-  }
-  l = l <= 1 ? 2 : l;
-  $(rtpg.map.MAP_VALUES_PES_ALUMNO).attr('size', l);
-}
-
-
-
 rtpg.map.onRealtime = function(evt) {
-  //rtpg.map.updateRespuestasDocente();
-  //rtpg.map.updateDonDocente();
   rtpg.map.updateUi();
   rtpg.map.updateUiAlumno();
   rtpg.map.updateDonAlumno();
   rtpg.map.connectUiAlumno();
-  //rtpg.log.logEvent(evt, 'Map Value Changed');
+  cargar_preguntas_alumno();
 };
 
 
@@ -244,18 +166,6 @@ rtpg.map.onPutMap = function(evt) {
 
 };
 
-rtpg.map.onPutMapRespuesta = function(evt) {
-
-  var val = eval("$(rtpg.map.PUT_VALUE_RESPUESTA_"+evt.data.key+").val()");
-  var key = evt.data.key+("-")+obtener_alumno();
-  rtpg.map.field.set(key, val);
-
-  alert("Su respuesta ha sido enviada correctamente");
-  $(rtpg.map.PUT_VALUE_RESPUESTA).val('');
-
-};
-
-
 rtpg.map.connectUi = function() {
   $(rtpg.map.REMOVE_SELECTOR).click(rtpg.map.onRemoveItem);
   $(rtpg.map.CLEAR_SELECTOR).click(rtpg.map.onClearMap);
@@ -266,21 +176,6 @@ rtpg.map.connectUi = function() {
   $(rtpg.map.CLEAN_CUESTIONES).click(rtpg.map.CleanTextCuestiones);
 };
 
-rtpg.map.connectUiAlumno = function() {
-  //alert("ContectUiAlumno");
-
-  var keys = rtpg.map.field.keys();
-  keys.sort();
-  var l = keys.length;
-
-  for (var i=0; i < l; i++) {
-    var key = keys[i];
-	if(key.length=="3"){
-	   eval("$(rtpg.map.PUT_RESPUESTA_"+key+").click({key:'"+key+"'},rtpg.map.onPutMapRespuesta)");
-       eval("$(rtpg.map.CLEAN_RESPUESTA_"+key+").click({key:'"+key+"'},rtpg.map.CleanRespuesta)");
-   }
-  }
-}
 
 rtpg.map.connectRealtime = function() {
   rtpg.map.field.addEventListener(gapi.drive.realtime.EventType.VALUE_CHANGED, rtpg.map.onRealtime);
@@ -291,29 +186,7 @@ rtpg.map.CleanText = function(){
   $(rtpg.map.PUT_VALUE_SELECTOR).val('');
 }
 
-rtpg.map.CleanRespuesta = function(evt){
-   eval("$(rtpg.map.PUT_VALUE_RESPUESTA_"+evt.data.key+").val('')"); 
-}
-
-rtpg.map.updateDonAlumno = function(){
-  //alert("updateDon");
-    
-  var keys = rtpg.map.field.keys();
-  keys.sort();
-  var l = keys.length;
-
-  for (var i=0; i < l; i++) {
-    var key = keys[i];
-	if(key.length=="3"){
-		eval("rtpg.map.PUT_VALUE_RESPUESTA_"+key+"= '#RespuestaValue_"+key+"'");
-		eval("rtpg.map.PUT_RESPUESTA_"+key+"= '#RespuestaPut_"+key+"'");
-		eval("rtpg.map.CLEAN_RESPUESTA_"+key+"= '#RespuestaClean_"+key+"'");
-	}
-  }
-}
-
 rtpg.map.updateDonDocente = function(){
-  //alert("updateDonDocente");
     
   var keys = rtpg.map.field.keys();
   keys.sort();
@@ -328,12 +201,135 @@ rtpg.map.updateDonDocente = function(){
   }
 }
 
+
+/***** ALUMNO ****/
+
+rtpg.map.updateUiAlumno = function() {
+
+  $(rtpg.map.MAP_PES_ALUMNO).empty();
+
+  var keys = rtpg.map.field.keys();
+  var check = true;
+  keys.sort();
+
+  var l = keys.length;
+  for (var i=0; i < l; i++) {
+    var key = keys[i];
+
+	if(key.length=="3"){
+		var val = obtener_pregunta(rtpg.map.field.get(key));
+
+		if(i==0)check=true;
+		else check=false;
+
+		if(val[1]==null){
+			var html = generar_pregunta(key,val[0],check);
+			$(rtpg.map.MAP_PES_ALUMNO).append(html);
+		}
+
+		else{
+			var html = generar_cuestionario(key,val[0],val[1],check);
+			$(rtpg.map.MAP_PES_ALUMNO).append(html);
+		}
+
+	}
+  }
+  l = l <= 1 ? 2 : l;
+  $(rtpg.map.MAP_VALUES_PES_ALUMNO).attr('size', l);
+}
+
+
+rtpg.map.onPutMapRespuesta = function(evt) {
+
+  var val = eval("$(rtpg.map.PUT_VALUE_RESPUESTA_"+evt.data.key+").val()");
+  var key = evt.data.key+("-")+obtener_alumno();
+  rtpg.map.field.set(key, val);
+
+  alert("Su respuesta ha sido enviada correctamente");
+  $(rtpg.map.PUT_VALUE_RESPUESTA).val('');
+
+};
+
+rtpg.map.onPutMapRespuestaCuestionario = function(evt) {
+
+  var val = capturar_valor_cuestionario(evt.data.key);
+  var key = evt.data.key+("-")+obtener_alumno();
+	
+  rtpg.map.field.set(key, val);
+
+  alert("Su respuesta ha sido enviada correctamente");
+
+};
+
+
+rtpg.map.connectUiAlumno = function() {
+
+  var keys = rtpg.map.field.keys();
+  keys.sort();
+  var l = keys.length;
+
+  for (var i=0; i < l; i++) {
+    var key = keys[i];
+	if(key.length=="3"){
+
+   		var val = obtener_pregunta(rtpg.map.field.get(key));
+
+    	if(val[1]!=null){
+			eval("$(rtpg.map.PUT_RESPUESTA_CUESTIONARIO"+key+").click({key:'"+key+"'},rtpg.map.onPutMapRespuestaCuestionario)");
+		}
+		else{
+	   		eval("$(rtpg.map.PUT_RESPUESTA_"+key+").click({key:'"+key+"'},rtpg.map.onPutMapRespuesta)");
+       		eval("$(rtpg.map.CLEAN_RESPUESTA_"+key+").click({key:'"+key+"'},rtpg.map.CleanRespuesta)");
+		}
+   }
+  }
+}
+
+rtpg.map.updateDonAlumno = function(){
+    
+  var keys = rtpg.map.field.keys();
+  keys.sort();
+  var l = keys.length;
+
+  for (var i=0; i < l; i++) {
+    var key = keys[i];
+	if(key.length=="3"){
+
+   		var val = obtener_pregunta(rtpg.map.field.get(key));
+
+    	if(val[1]!=null){
+
+			eval("rtpg.map.PUT_VALUE_RESPUESTA_CUESTIONARIO"+key+"= '#RespuestaCuestionarioValue_"+key+"'");
+			eval("rtpg.map.PUT_RESPUESTA_CUESTIONARIO"+key+"= '#RespuestaCuestionarioPut_"+key+"'");
+		
+			eval("rtpg.map.CUESTION_RESPUESTA_"+key+"_1 = '#option_"+key+"_1'");
+			eval("rtpg.map.CUESTION_RESPUESTA_"+key+"_1 = '#option_"+key+"_1'");	
+			eval("rtpg.map.CUESTION_RESPUESTA_"+key+"_1 = '#option_"+key+"_1'");
+			eval("rtpg.map.CUESTION_RESPUESTA_"+key+"_1 = '#option_"+key+"_1'");
+		}
+
+		else{
+
+			eval("rtpg.map.PUT_VALUE_RESPUESTA_"+key+"= '#RespuestaValue_"+key+"'");
+			eval("rtpg.map.PUT_RESPUESTA_"+key+"= '#RespuestaPut_"+key+"'");
+			eval("rtpg.map.CLEAN_RESPUESTA_"+key+"= '#RespuestaClean_"+key+"'");
+
+		}
+	}
+
+  }
+}
+
+
 rtpg.map.updateAlumno = function(){
 	 rtpg.map.updateUiAlumno();
 	 rtpg.map.updateDonAlumno();
 	 rtpg.map.connectUiAlumno();
 }
 
+rtpg.map.CleanRespuesta = function(evt){
+   eval("$(rtpg.map.PUT_VALUE_RESPUESTA_"+evt.data.key+").val('')"); 
+}
 
 /***** CUESTIONES ****/
 

@@ -2580,6 +2580,24 @@ section#collabMapDemo{
 	border-bottom: 0px;
 }
 
+/******* USER **********/
+
+/*SECTION CLASE*/
+
+#clase_user{
+	float: left; 
+	width: 100%;
+	border: 1px 0px solid #ebebeb;
+}
+
+section#clase_user .rp-section-content{
+	padding: 10px 0px;
+}
+
+section#clase_user .notesBox{
+	height: 148px;
+}
+
 #respuestas_alumno select{
 	width: 300px;
 }
@@ -2601,24 +2619,12 @@ section#collabMapDemo{
 	width: 100%;
 }
 
-/******* USER **********/
-
-/*SECTION CLASE*/
-
-#clase_user{
-	float: left; 
-	width: 100%;
-	border: 1px 0px solid #ebebeb;
+#respuestas [type=radio] { 
+	display: inherit;
+	float: left;
+	top: 7px;
+	margin-right: 10px;	 
 }
-
-section#clase_user .rp-section-content{
-	padding: 10px 0px;
-}
-
-section#clase_user .notesBox{
-	height: 148px;
-}
-
 
 
 /****** GENERICO *******/

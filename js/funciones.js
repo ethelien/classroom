@@ -15,6 +15,7 @@ function control_usuario(admin,title) {
     $("#contenedorcentral").load( "html/clase_user.html" );
 	$(document).ready(function(){
     	setTimeout(function(){cargar_panel_clase(title);},600);
+    	setTimeout(function(){cargar_preguntas_alumno();},600);
  		setTimeout(function(){rtpg.map.updateUiAlumno();},600);
 	    setTimeout(function(){rtpg.map.updateDonAlumno();},600);
 	    setTimeout(function(){rtpg.map.connectUiAlumno();},600);
@@ -23,9 +24,31 @@ function control_usuario(admin,title) {
 
 //Cargar panel de clase
 function cargar_panel_clase(title){
-    //SI PONES EL ALERT DEL TITLE SI LO CARGA 'TIEMPOs' alert(title);
     $("#titulo_asignatura").text(title);
 }
+
+function cargar_preguntas_alumno(){
+
+	var respondidas="";
+
+	var keys = rtpg.map.field.keys();
+ 	keys.sort();
+    var l = keys.length;
+
+	for (var i=0; i < l; i++) {
+
+		var key = keys[i];
+
+		if(key.length>"3"){
+			var elem = key.split('-');
+			if(obtener_alumno()==elem[1]) respondidas+=(elem[0]+", ");
+		}
+	}
+
+    $("#preguntas_respondidas").text(respondidas);
+
+}
+
 
 //Generar ID de las respuestas y preguntas
 function add_zero(n) {
@@ -134,6 +157,37 @@ function limpiar_valores_cuestionario(){
 function obtener_pregunta(val){
 
 	var resul = val.split('/*/*/*/*/');
-    return resul[0];
+    return resul;
+
+}
+
+//Generar HTML el cuestionario para los alumno
+function generar_cuestionario(key,val,opciones,check){
+
+var opt = opciones.split('/*/*/');
+
+if(check){
+var html = " <div class='tab'><input type='radio' id='tab-"+key+"' name='tab-group-1' checked><label for='tab-"+key+"'>Pregunta"+key+"</label><div class='content'><section id='collabMapDemo' class='rp-greyRuledBottom' style='padding-bottom: 60px'><div id='respuestas' class='rp-section-content'><h4>"+val+"</h4><form id='RespuestaCuestionarioValue_"+key+"'><input type='radio' id='option_"+key+"_1' name='option_"+key+"' value='"+opt[0]+"'>"+opt[0]+"<br><input type='radio' id='option_"+key+"_2' name='option_"+key+"' value='"+opt[1]+"'>"+opt[1]+"<br><input type='radio' id='option_"+key+"_3' name='option_"+key+"' value='"+opt[2]+"'>"+opt[2]+"<br><input type='radio' id='option_"+key+"_4' name='option_"+key+"' value='"+opt[3]+"'>"+opt[3]+"<br></form><button id='RespuestaCuestionarioPut_"+key+"' value='"+key+"' class='rp-button'>Enviar</button></div></section></div></div>";
+}
+
+else{
+var html = " <div class='tab'><input type='radio' id='tab-"+key+"' name='tab-group-1'><label for='tab-"+key+"'>Pregunta"+key+"</label><div class='content'><section id='collabMapDemo' class='rp-greyRuledBottom' style='padding-bottom: 60px'><div id='respuestas' class='rp-section-content'><h4>"+val+"</h4><form id='RespuestaCuestionarioValue_"+key+"'><input type='radio' id='option_"+key+"_1' name='option_"+key+"' value='"+opt[0]+"'>"+opt[0]+"<br><input type='radio' id='option_"+key+"_2' name='option_"+key+"' value='"+opt[1]+"'>"+opt[1]+"<br><input type='radio' id='option_"+key+"_3' name='option_"+key+"' value='"+opt[2]+"'>"+opt[2]+"<br><input type='radio' id='option_"+key+"_4' name='option_"+key+"' value='"+opt[3]+"'>"+opt[3]+"<br></form><button id='RespuestaCuestionarioPut_"+key+"' value='"+key+"' class='rp-button'>Enviar</button></div></section></div></div>";
+}
+
+return html;
+
+}
+
+//Capturar respuesta del cuestionario del alumno
+function capturar_valor_cuestionario(key) { 
+	var resultado="ninguno"; 
+	var id = eval("'option_"+key+"'");
+	var porNombre=document.getElementsByName(id);
+	
+	for(var i=0;i<porNombre.length;i++) { 
+		if(porNombre[i].checked) resultado=porNombre[i].value; 
+	} 
+
+	return resultado;
 
 }
