@@ -2627,6 +2627,22 @@ section#clase_user .notesBox{
 }
 
 
+/****** CONSULTAS *******/
+
+#consultas_admin, #consultas_user{
+	min-height: 300px;
+}
+
+#consultas_admin textarea, #consultas_user textarea {
+	width: 100%;
+}
+
+#consultas_admi button, #consultas_user button{
+	float: right;
+	margin: 0px 5px;
+}
+
+
 /****** GENERICO *******/
 
 .tabs { /* es el rectángulo contenedor */

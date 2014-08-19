@@ -366,96 +366,139 @@ rtpg.map.CleanTextCuestiones = function(){
 
 
 
-
-/**** CONSULTAS *****/ /* MONTADO PARA QUE FUNCIONE COMO UN SEGUNDO MAP [Antes cuestiones]*/
-
+/********************/
+/**** CONSULTAS *****/
+/********************/
 
 /**
  * Namespace
  */
-rtpg.map_cuestiones 			= rtpg.map_cuestiones || {};
-rtpg.allDemos.push(rtpg.map_cuestiones);
+rtpg.map_consultas 			= rtpg.map_consultas || {};
+rtpg.allDemos.push(rtpg.map_consultas);
 
 
 /**
  * Realtime model's field name.
  */
-rtpg.map_cuestiones.FIELD_NAME = 'demo_map_cuestiones';
+rtpg.map_consultas.FIELD_NAME = 'demo_map_consultas';
 
 /**
  * Realtime model's field.
  */
-rtpg.map_cuestiones.field = null;
-rtpg.map_cuestiones.START_KEYS = ({"Key 1":"Value 1", "Key 2":"Value 2", "Key 3":"Value 3", "Key 4":"Value 4"});
+rtpg.map_consultas.field = null;
+rtpg.map_consultas.START_KEYS = ({});
 
 /**
  * DOM selector for the elements for Problemas.
  */
-rtpg.map_cuestiones.MAP_KEYS_SELECTOR = '#ConsultasKeys';
-rtpg.map_cuestiones.MAP_VALUES_SELECTOR = '#ConsultasValues';
-rtpg.map_cuestiones.REMOVE_SELECTOR = '#demoMapRemove';
-rtpg.map_cuestiones.CLEAR_SELECTOR = '#demoMapClear';
-rtpg.map_cuestiones.PUT_SELECTOR = '#ConsultasPut';
-rtpg.map_cuestiones.CLEAN_SELECTOR = '#ConsultasClean';
-//rtpg.map.PUT_KEY_SELECTOR = '#demoMapKey';
-rtpg.map_cuestiones.PUT_VALUE_SELECTOR = '#ConsultasValue';
+rtpg.map_consultas.MAP_KEYS_SELECTOR = '#ConsultasKeys';
+rtpg.map_consultas.MAP_VALUES_SELECTOR = '#ConsultasValues';
+rtpg.map_consultas.REMOVE_SELECTOR = '#demoMapRemove';
+rtpg.map_consultas.CLEAR_SELECTOR = '#demoMapClear';
+rtpg.map_consultas.PUT_SELECTOR = '#ConsultasPut';
+rtpg.map_consultas.CLEAN_SELECTOR = '#ConsultasClean';
+rtpg.map_consultas.PUT_VALUE_SELECTOR = '#ConsultasValue';
+//rtpg.map.MAP_PES_ALUMNO = '#preguntas_alumno';
+//rtpg.map.MAP_RES_ALUMNO = '#respuestas_alumno';
+rtpg.map_consultas.CONSULTAS_PROFESOR = '#consultas_admin';
 
 
-rtpg.map_cuestiones.loadField = function() {
-  rtpg.map_cuestiones.field = rtpg.getField(rtpg.map_cuestiones.FIELD_NAME);
+rtpg.map_consultas.loadField = function() {
+  rtpg.map_consultas.field = rtpg.getField(rtpg.map_consultas.FIELD_NAME);
 }
 
 
-rtpg.map_cuestiones.initializeModel = function(model) {
-  var field = model.createMap(rtpg.map_cuestiones.START_KEYS);
-  for (var key in rtpg.map_cuestiones.START_KEYS) {
-    field.set(key, rtpg.map_cuestiones.START_KEYS[key]);
+rtpg.map_consultas.initializeModel = function(model) {
+
+  var field = model.createMap(rtpg.map_consultas.START_KEYS);
+  for (var key in rtpg.map_consultas.START_KEYS) {
+    field.set(key, rtpg.map_consultas.START_KEYS[key]);
   }
-  model.getRoot().set(rtpg.map_cuestiones.FIELD_NAME, field);
+  model.getRoot().set(rtpg.map_consultas.FIELD_NAME, field);
 }
 
 
-rtpg.map_cuestiones.updateUi = function() {
-  $(rtpg.map_cuestiones.MAP_KEYS_SELECTOR).empty();
-  $(rtpg.map_cuestiones.MAP_VALUES_SELECTOR).empty();
-  var keys = rtpg.map_cuestiones.field.keys();
+rtpg.map_consultas.updateUiAlumno = function() {
+ /* $(rtpg.map_consultas.MAP_KEYS_SELECTOR).empty();
+  $(rtpg.map_consultas.MAP_VALUES_SELECTOR).empty();
+  var keys = rtpg.map_consultas.field.keys();
   keys.sort();
+  var l = keys.length;
+  alert("KEYS: "+l);
+  for (var i=0; i < l; i++) {
+    var key = keys[i];
+    var val = rtpg.map_consultas.field.get(key);
+    alert(key+" - "+val+" - LUGAR: "+rtpg.map_consultas.MAP_KEYS_SELECTOR);
+    var newOptionKey = $('<option>').val(key).text('\xa0\xa0' + key);
+    var newOptionValue = $('<option>').val(val).text('\xa0\xa0' + val);
+    $(rtpg.map_consultas.MAP_KEYS_SELECTOR).append(newOptionKey);
+    $(rtpg.map_consultas.MAP_VALUES_SELECTOR).append(newOptionValue);
+  }
+  l = l <= 1 ? 2 : l;
+  $(rtpg.map_consultas.MAP_KEYS_SELECTOR).attr('size', l);
+  $(rtpg.map_consultas.MAP_VALUES_SELECTOR).attr('size', l);
+*/
+
+
+  $(rtpg.map_consultas.RESPUESTAS_PROFESOR).empty();
+
+  var keys = rtpg.map_consultas.field.keys();
+  var check = true;
+  keys.sort();
+
   var l = keys.length;
   for (var i=0; i < l; i++) {
     var key = keys[i];
-    var val = rtpg.map_cuestiones.field.get(key);
-    var newOptionKey = $('<option>').val(key).text('\xa0\xa0' + key);
-    var newOptionValue = $('<option>').val(val).text('\xa0\xa0' + val);
-    $(rtpg.map_cuestiones.MAP_KEYS_SELECTOR).append(newOptionKey);
-    $(rtpg.map_cuestiones.MAP_VALUES_SELECTOR).append(newOptionValue);
+	var elem = key.split('-');
+    alert(elem[0]+" -- "+elem[1]);
+    //SERA 4 - XXXR - 0001 --> POR AHORA PARA PROBAR 3 hasta que ponga la R en la key generada por el docente
+    alert(elem[0].length);
+    alert(obtener_alumno())
+
+	if(elem[0].length=="4" && elem[1]==obtener_alumno()){
+		alert("ENTRO");
+		var val = rtpg.map_consultas.field.get(key);
+		var aux = elem[0].substring(0, elem[0].length-1)+"-"+elem[1];
+		//LA PREGUNTA SERA LA QUE TENGA LA KEY XXX sin La R
+
+		var pregunta = rtpg.map_consultas.field.get(aux);
+        alert(pregunta);
+        //var pregunta = "PRUEBA";
+
+		var html = generar_respuesta_consultas(elem[0],pregunta,val,check);
+		check=false;
+
+		$(rtpg.map_consultas.RESPUESTAS_PROFESOR).append(html);
+	}
   }
   l = l <= 1 ? 2 : l;
-  $(rtpg.map_cuestiones.MAP_KEYS_SELECTOR).attr('size', l);
-  $(rtpg.map_cuestiones.MAP_VALUES_SELECTOR).attr('size', l);
+  $(rtpg.map_consultas.RESPUESTAS_PROFESOR).attr('size', l);
 }
 
 
-rtpg.map_cuestiones.onRealtime = function(evt) {
-  rtpg.map_cuestiones.updateUi();
-  //rtpg.log.logEvent(evt, 'Map Value Changed');
+rtpg.map_consultas.onRealtime = function(evt) {
+  rtpg.map_consultas.updateUi();
+  rtpg.map_consultas.updateUiAlumno();
+  rtpg.map_consultas.updateDonDocente();
+  rtpg.map_consultas.connectUiDocente();
 };
 
 
-rtpg.map_cuestiones.onRemoveItem = function(evt) {
-  var key = $(rtpg.map_cuestiones.MAP_KEYS_SELECTOR).val();
+rtpg.map_consultas.onRemoveItem = function(evt) {
+  var key = $(rtpg.map_consultas.MAP_KEYS_SELECTOR).val();
   if (key != null) {
-    rtpg.map_cuestiones.field.delete(key);
+    rtpg.map_consultas.field.delete(key);
   }
 };
 
 
-rtpg.map_cuestiones.onClearMap = function(evt) {
-  rtpg.map_cuestiones.field.clear();
+rtpg.map_consultas.onClearMap = function(evt) {
+  rtpg.map_consultas.field.clear();
 };
 
-rtpg.map_cuestiones.onPutMap = function(evt) {
-  //var key = $(rtpg.map.PUT_KEY_SELECTOR).val();
-  var keys = rtpg.map_cuestiones.field.keys();
+rtpg.map_consultas.onPutMap = function(evt) {
+
+  var keys = rtpg.map_consultas.field.keys();
   if(keys.length==0) var aux="1";
   else{ 
 	keys.sort();
@@ -463,28 +506,124 @@ rtpg.map_cuestiones.onPutMap = function(evt) {
     var aux = ((parseInt(keys[0]))+1).toString();
   }
 
-  var key = add_zero(aux); 
-  var val = $(rtpg.map_cuestiones.PUT_VALUE_SELECTOR).val();
-  rtpg.map_cuestiones.field.set(key, val);
+  var key = add_zero(aux)+("-")+obtener_alumno();
+  var val = $(rtpg.map_consultas.PUT_VALUE_SELECTOR).val();
+  rtpg.map_consultas.field.set(key, val);
 
-  alert("Su pregunta ha sido enviada correctamente");
-  $(rtpg.map_cuestiones.PUT_VALUE_SELECTOR).val('');
+  alert("Su consulta ha sido enviada correctamente");
+  $(rtpg.map_consultas.PUT_VALUE_SELECTOR).val('');
 };
 
 
-rtpg.map_cuestiones.connectUi = function() {
-  $(rtpg.map_cuestiones.REMOVE_SELECTOR).click(rtpg.map.onRemoveItem);
-  $(rtpg.map_cuestiones.CLEAR_SELECTOR).click(rtpg.map.onClearMap);
-  $(rtpg.map_cuestiones.PUT_SELECTOR).click(rtpg.map.onPutMap);
-  $(rtpg.map_cuestiones.CLEAN_SELECTOR).click(rtpg.map.CleanText);
+rtpg.map_consultas.connectUi = function() {
+  $(rtpg.map_consultas.REMOVE_SELECTOR).click(rtpg.map_consultas.onRemoveItem);
+  $(rtpg.map_consultas.CLEAR_SELECTOR).click(rtpg.map_consultas.onClearMap);
+  $(rtpg.map_consultas.PUT_SELECTOR).click(rtpg.map_consultas.onPutMap);
+  $(rtpg.map_consultas.CLEAN_SELECTOR).click(rtpg.map_consultas.CleanText);
 };
 
 
-rtpg.map_cuestiones.connectRealtime = function() {
-  rtpg.map_cuestiones.field.addEventListener(gapi.drive.realtime.EventType.VALUE_CHANGED, rtpg.map_cuestiones.onRealtime);
+rtpg.map_consultas.connectRealtime = function() {
+  rtpg.map_consultas.field.addEventListener(gapi.drive.realtime.EventType.VALUE_CHANGED, rtpg.map_consultas.onRealtime);
 };
 
-rtpg.map_cuestiones.CleanText = function(){
-  $(rtpg.map_cuestiones.PUT_VALUE_SELECTOR).val('');
+rtpg.map_consultas.CleanText = function(){
+  $(rtpg.map_consultas.PUT_VALUE_SELECTOR).val('');
 }
+
+
+rtpg.map_consultas.updateDonAlumno = function(){
+
+	rtpg.map_consultas.MAP_KEYS_SELECTOR = '#ConsultasKeys';
+	rtpg.map_consultas.MAP_VALUES_SELECTOR = '#ConsultasValues';
+	rtpg.map_consultas.REMOVE_SELECTOR = '#demoMapRemove';
+	rtpg.map_consultas.CLEAR_SELECTOR = '#demoMapClear';
+	rtpg.map_consultas.PUT_SELECTOR = '#ConsultasPut';
+	rtpg.map_consultas.CLEAN_SELECTOR = '#ConsultasClean';
+	rtpg.map_consultas.PUT_VALUE_SELECTOR = '#ConsultasValue';
+	rtpg.map_consultas.RESPUESTAS_PROFESOR = '#respuestas_alumno_consultas';
+  
+}
+
+
+rtpg.map_consultas.updateUi = function() {
+
+  $(rtpg.map_consultas.CONSULTAS_PROFESOR).empty();
+
+  var keys = rtpg.map_consultas.field.keys();
+  var check = true;
+  keys.sort();
+
+  var l = keys.length;
+  for (var i=0; i < l; i++) {
+    var key = keys[i];
+
+	if(key.length>"4"){
+        
+		var val = rtpg.map_consultas.field.get(key);
+
+		if(i==0)check=true;
+		else check=false;
+
+		var elem = key.split('-');
+		var html = generar_pregunta_consultas(elem[0],elem[1],val,check);
+		$(rtpg.map_consultas.CONSULTAS_PROFESOR).append(html);
+
+	}
+  }
+  l = l <= 1 ? 2 : l;
+  $(rtpg.map_consultas.CONSULTAS_PROFESOR).attr('size', l);
+}
+
+
+rtpg.map_consultas.onPutMapConsulta = function(evt) {
+
+  var val = eval("$(rtpg.map_consultas.VALUE_RESPUESTA_CONSULTA_"+evt.data.key+").val()");
+
+  var key = (evt.data.key+"R-"+evt.data.alumno);
+  rtpg.map_consultas.field.set(key, val);
+
+  alert("La respuesta a la consulta ha sido enviada correctamente");
+  $(rtpg.map_consultas.PUT_VALUE_RESPUESTA).val('');
+
+};
+
+rtpg.map_consultas.updateDonDocente = function(){
+    
+  var keys = rtpg.map_consultas.field.keys();
+  keys.sort();
+  var l = keys.length;
+
+  for (var i=0; i < l; i++) {
+    var key = keys[i];
+    var elem = key.split('-');
+
+	if(elem[0].length=="3"){
+		eval("rtpg.map_consultas.VALUE_RESPUESTA_CONSULTA_"+elem[0]+"= '#RespuestaConsultaValue_"+elem[0]+"'");
+		eval("rtpg.map_consultas.RESPUESTA_CUESTIONARIO_"+elem[0]+"= '#RespuestaConsultaPut_"+elem[0]+"'");
+		eval("rtpg.map_consultas.CLEAN_RESPUESTA_"+elem[0]+"= '#RespuestaConsulta_"+elem[0]+"'");
+	}
+
+  }
+}
+
+rtpg.map_consultas.connectUiDocente = function() {
+
+  var keys = rtpg.map_consultas.field.keys();
+  keys.sort();
+  var l = keys.length;
+
+  for (var i=0; i < l; i++) {
+    var key = keys[i];
+	var elem = key.split('-');
+	if(elem[0].length=="3"){
+   		eval("$(rtpg.map_consultas.RESPUESTA_CUESTIONARIO_"+elem[0]+").click({key:'"+elem[0]+"', alumno:'"+elem[1]+"'},rtpg.map_consultas.onPutMapConsulta)");
+   		eval("$(rtpg.map_consultas.CLEAN_RESPUESTA_"+elem[0]+").click({key:'"+elem[0]+"'},rtpg.map_consultas.CleanConsulta)");
+   }
+  }
+}
+
+rtpg.map_consultas.CleanConsulta = function(evt){
+   eval("$(rtpg.map_consultas.VALUE_RESPUESTA_CONSULTA_"+evt.data.key+").val('')"); 
+};
 

@@ -29,12 +29,33 @@
 		</div>
 	  </div>
 	 <div id="div_consultas" class="rp-section-content" style="line-height: 30px;">
-		<section id="collabproblemas" class="rp-greyRuledBottom" style="padding-bottom: 20px">
-			<div class="rp-section-content">
-			  <h4>Consultas</h4>
-			  <textarea id="demoStringInput" style="margin-top: 10px"></textarea>
-			</div>
-		</section>
+		<div class="tabs">
+		   <div class="tab">
+			   <input type="radio" id="tab-1" name="tab-group-2" checked>
+			   <label for="tab-1">Consultar</label>
+
+			   <div class="content"> 
+					<div id="consultas_user" class="rp-section-content">
+						<h4>Escribir consulta</h4>
+					    <textarea rows="8" cols="50" id="ConsultasValue" type="text" placeholder="Escribe aquí la consulta deseas enviar"></textarea>
+							<button id="ConsultasClean" class="rp-button" value="">Limpiar</button>
+							<button id="ConsultasPut" class="rp-button" value="">Enviar</button>
+							<button id="demoMapClear" class="rp-button" style="margin-bottom: 10px;">Clear the map</button><br />	
+					</div>	
+			   </div>
+		   </div>
+		   <div class="tab">
+			   <input type="radio" id="tab-2" name="tab-group-2">
+			   <label for="tab-2">Respuestas</label>
+
+			   <div class="content"> 
+                   	<div id="respuestas_alumno_consultas" class="tabs">
+	 				
+					</div>  
+               </div>
+		   </div>
+		</div>
+
 	  </div>
 	</section>
 </div> 
