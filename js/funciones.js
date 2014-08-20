@@ -1,5 +1,5 @@
 /**
-Funciones UPV E-Class
+Funciones UPV E-Class especificas
 **/
 
 $(".checkbox").change(function() {
@@ -85,7 +85,6 @@ function validar_usuario(fileId) {
 	try{
 		var Admin = resp.ownerNames;
 		var title = resp.title;
-        //console.log('Description: ' + resp.ownerNames);
 		}
 		catch(e){
 	}
@@ -93,11 +92,9 @@ function validar_usuario(fileId) {
     var collaborator = rtpg.getMe();
 
     if(collaborator.displayName == Admin){
-	  //alert("Soy Admin");
        control_admin();
     }
     else{
-      //alert("Soy Alumno");
   	  control_usuario(Admin,title);
     }
   });

@@ -1,6 +1,4 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,17 +12,6 @@
  * limitations under the License.
  */
 
-/**
- * Realtime playground.
- *
- * Shows off and demos various Realtime API features. This application is
- * intentionally low-tech, and devoid of clever abstraction, being designed
- * to be used as a sample.
- */
-
-/**
- * Realtime playground namespace.
- */
 var rtpg = rtpg || {};
 var fileID_aux = '';
 

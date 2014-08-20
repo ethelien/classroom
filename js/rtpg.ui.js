@@ -1,6 +1,4 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,13 +12,6 @@
  * limitations under the License.
  */
 
-/**
- * User Interface logic for the OAuth playground. Such as initializing the UI
- * elements, user interface triggers such as disabling/enabling buttons, window
- * resize login etc...
- *
- * @author nivco@google.com
- */
 
 /** google global namespace for Google projects. */
 var rtpg = rtpg || {};

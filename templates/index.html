@@ -35,7 +35,7 @@
 			var picker = new FilePicker({
 				apiKey: 'AIzaSyAQBl3IZ82t2phQ3yYGU6C_VSHYw_hAOR0',
 				clientId: '232095489061-trrh8k0t9seiv3e0qfvr726807aqslrr',
-				buttonEl: document.getElementById('pick'),
+				buttonEl: document.getElementById('abrir_transparencias'),
 				onSelect: function(file) {
 					console.log(file);
 					alert('Selected ' + file.title);
@@ -151,11 +151,11 @@
 		  </div>
 		  <div class="rp-section-content" style="line-height: 30px;">
 
-			<iframe id="transparencias" src="http://www.w3schools.com">
-			  <p>Your browser does not support iframes.</p>
-			</iframe>
+			<div>
+				<iframe height="240" width="400" id="result" seamless='true' src=""></iframe>
+			</div> 
 
-			<button id="abrir_transparencias" type="button" id="pick">Abrir Transparencias</button>
+			<button id="abrir_transparencias" type="button" >Abrir Transparencias</button>
 		  </div>
 		</section>
 	  </div>

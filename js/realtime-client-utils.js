@@ -1,5 +1,4 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +14,6 @@
  */
 
  "use strict";
-
-/**
- * @fileoverview Common utility functionality for Google Drive Realtime API,
- * including authorization and file loading. This functionality should serve
- * mostly as a well-documented example, though is usable in its own right.
- */
-
 
 /**
  * @namespace Realtime client utilities namespace.

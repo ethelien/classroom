@@ -1,6 +1,4 @@
 /**
- * Copyright 2014 Google Inc. All Rights Reserved.
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -398,8 +396,6 @@ rtpg.map_consultas.CLEAR_SELECTOR = '#demoMapClear';
 rtpg.map_consultas.PUT_SELECTOR = '#ConsultasPut';
 rtpg.map_consultas.CLEAN_SELECTOR = '#ConsultasClean';
 rtpg.map_consultas.PUT_VALUE_SELECTOR = '#ConsultasValue';
-//rtpg.map.MAP_PES_ALUMNO = '#preguntas_alumno';
-//rtpg.map.MAP_RES_ALUMNO = '#respuestas_alumno';
 rtpg.map_consultas.CONSULTAS_PROFESOR = '#consultas_admin';
 
 
@@ -419,26 +415,6 @@ rtpg.map_consultas.initializeModel = function(model) {
 
 
 rtpg.map_consultas.updateUiAlumno = function() {
- /* $(rtpg.map_consultas.MAP_KEYS_SELECTOR).empty();
-  $(rtpg.map_consultas.MAP_VALUES_SELECTOR).empty();
-  var keys = rtpg.map_consultas.field.keys();
-  keys.sort();
-  var l = keys.length;
-  alert("KEYS: "+l);
-  for (var i=0; i < l; i++) {
-    var key = keys[i];
-    var val = rtpg.map_consultas.field.get(key);
-    alert(key+" - "+val+" - LUGAR: "+rtpg.map_consultas.MAP_KEYS_SELECTOR);
-    var newOptionKey = $('<option>').val(key).text('\xa0\xa0' + key);
-    var newOptionValue = $('<option>').val(val).text('\xa0\xa0' + val);
-    $(rtpg.map_consultas.MAP_KEYS_SELECTOR).append(newOptionKey);
-    $(rtpg.map_consultas.MAP_VALUES_SELECTOR).append(newOptionValue);
-  }
-  l = l <= 1 ? 2 : l;
-  $(rtpg.map_consultas.MAP_KEYS_SELECTOR).attr('size', l);
-  $(rtpg.map_consultas.MAP_VALUES_SELECTOR).attr('size', l);
-*/
-
 
   $(rtpg.map_consultas.RESPUESTAS_PROFESOR).empty();
 
@@ -450,20 +426,13 @@ rtpg.map_consultas.updateUiAlumno = function() {
   for (var i=0; i < l; i++) {
     var key = keys[i];
 	var elem = key.split('-');
-    alert(elem[0]+" -- "+elem[1]);
-    //SERA 4 - XXXR - 0001 --> POR AHORA PARA PROBAR 3 hasta que ponga la R en la key generada por el docente
-    alert(elem[0].length);
-    alert(obtener_alumno())
 
 	if(elem[0].length=="4" && elem[1]==obtener_alumno()){
-		alert("ENTRO");
+
 		var val = rtpg.map_consultas.field.get(key);
 		var aux = elem[0].substring(0, elem[0].length-1)+"-"+elem[1];
-		//LA PREGUNTA SERA LA QUE TENGA LA KEY XXX sin La R
 
 		var pregunta = rtpg.map_consultas.field.get(aux);
-        alert(pregunta);
-        //var pregunta = "PRUEBA";
 
 		var html = generar_respuesta_consultas(elem[0],pregunta,val,check);
 		check=false;

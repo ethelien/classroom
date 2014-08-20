@@ -56,15 +56,15 @@
 		* Called when a file has been selected in the Google Drive file picker.
 		* @private
 		*/
+
 		_pickerCallback: function(data) {
+			var url = 'nothing';
 			if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
-				var file = data[google.picker.Response.DOCUMENTS][0],
-				id = file[google.picker.Document.ID],
-				request = gapi.client.drive.files.get({
-				fileId: id
-				});
-				request.execute(this._fileGetCallback.bind(this));
-				}
+				var doc = data[google.picker.Response.DOCUMENTS][0];
+				url = doc[google.picker.Document.EMBEDDABLE_URL] || doc[google.picker.Document.URL];
+				//document.getElementById('result').src = url;
+				document.getElementById('result_location').innerHTML = url;
+			}
 		},
 
 		/**
