@@ -62,8 +62,8 @@
 			if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
 				var doc = data[google.picker.Response.DOCUMENTS][0];
 				url = doc[google.picker.Document.EMBEDDABLE_URL] || doc[google.picker.Document.URL];
-				//document.getElementById('result').src = url;
-				document.getElementById('result_location').innerHTML = url;
+				document.getElementById('result').src = url;
+				//document.getElementById('result_location').innerHTML = url;
 			}
 		},
 
